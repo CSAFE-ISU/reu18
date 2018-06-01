@@ -23,6 +23,7 @@ description: The projects and musings of our 6 summer 2018 REU students in CSAFE
 
 # List of links in the navigation bar
 navbar-links:
+  About: "about"
   Blog: ""
   Resources:
     - CSAFE: "http://forensicstats.org/"
