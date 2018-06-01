@@ -1,0 +1,83 @@
+---
+layout: default
+css: "/css/index.css"
+---
+
+<div>
+  <h1>CSAFE @ ISU REU</h1>
+  <h4>Summer 2018</h4>
+  <h4>195 Durham Center</h4>
+  <h4>Iowa State University</h4>
+  <h4>Leader: Sam Tyner, sctyner at iastate dot edu</h4>
+  <h4>Graduate Student Assistant: Miranda Tilton tiltonm at iastate dot edu</h4>
+</div>
+<div>
+<p>
+  <h4>Description:</h4>
+  <p>This is the website for the work of students in CSAFE's summer REU program, hosted at Iowa State University. This website will be constantly updated as the summer progresses. We hope that you enjoy our work! 
+  </p>
+  <br/>
+  
+  <div class="list-filters">
+  <a href="/reu18" class="list-filter filter-selected">All posts</a>
+  <a href="/reu18/assignments" class="list-filter">Assignments</a>
+    <a href="/reu18/week1" class="list-filter">June 4-10, 2018</a>
+  <a href="/reu18/week2" class="list-filter">June 11-17, 2018</a>
+  <a href="/reu18/week3" class="list-filter">June 18-24, 2018</a>
+  <a href="/reu18/week4" class="list-filter">June 25 - July 1, 2018</a>
+  <a href="/reu18/week5" class="list-filter">July 2-8, 2018</a>
+  <a href="/reu18/week6" class="list-filter">July 9-15, 2018</a>
+  <a href="/reu18/week7" class="list-filter">July 16-22, 2018</a>
+  <a href="/reu18/week8" class="list-filter">July 23-30, 2018</a>
+    <a href="/reu18/week8" class="list-filter filter-selected">July 30 - August 3, 2018</a>
+  </div>
+  
+  <div class="posts-list">
+  {% for post in paginator.posts %}
+  <article>
+    <a class="post-preview" href="{{ post.url | prepend: site.baseurl }}">
+	    <h2 class="post-title">{{ post.title }}</h2>
+	
+	    {% if post.subtitle %}
+	    <h3 class="post-subtitle">
+	      {{ post.subtitle }}
+	    </h3>
+	    {% endif %}
+      <p class="post-meta">
+        Posted on {{ post.date | date: "%B %-d, %Y" }}
+      </p>
+
+      <div class="post-entry">
+        {{ post.content | truncatewords: 50 | strip_html | xml_escape}}
+        <span href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</span>
+      </div>
+    </a>  
+   </article>
+  {% endfor %}
+</div>
+
+{% if paginator.total_pages > 1 %}
+<ul class="pager main-pager">
+  {% if paginator.previous_page %}
+  <li class="previous">
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+  </li>
+  {% endif %}
+  {% if paginator.next_page %}
+  <li class="next">
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+  </li>
+  {% endif %}
+</ul>
+{% endif %}
+  
+  <p>
+    <h4>More info...</h4>
+    Use the navigation bar above! <br/>
+
+    CSAFE @ ISU's organization on GitHub: <a href="https://github.com/CSAFE-ISU">https://github.com/CSAFE-ISU</a> <br/>
+
+    Repo that creates this website: <a href="https://github.com/CSAFE-ISU/reu18">https://github.com/CSAFE-ISU/reu18</a> <br/>
+  </p>
+</p>
+</div>
