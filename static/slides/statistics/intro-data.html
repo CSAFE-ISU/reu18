@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Part 1: Introduction to Data</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Sam Tyner" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="csafe.css" type="text/css" />
+    <link rel="stylesheet" href="csafe-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Part 1: Introduction to Data
+### Sam Tyner
+### 2018/06/05
+
+---
+
+
+
+
+class: primary
+# Textbook
+
+These slides are based on the book *OpenIntro Statistics* by David Diez, Christopher Barr, and Mine Çetinkaya-Rundel
+
+The book can be downloaded from [https://www.openintro.org/stat/textbook.php](https://www.openintro.org/stat/textbook.php)
+
+Part 1 Corresponds to Chapter 1 of the text. Sections 1.1-1.7 correspond to sections 1.1-1.7 of the text.
+
+---
+class: primary
+# Outline 
+
+- Introductory example (1.1)
+- Data basics (1.2)
+- Data collection principles (1.3)
+- Obervations and samples (1.4)
+- Experiments (1.5)
+- Looking at Numerical Data (1.6)
+- Looking at Categorical data (1.7)
+
+---
+class: inverse, center 
+# Section 1.1: Introductory example
+
+---
+class: primary
+# Why Statistics? 
+
+- Good scientists use rigorous methods and make careful observations
+
+--
+  
+- Observations aka **data**: the backbone of a statistical investigation
+
+--
+
+- **Statistics**: "the study of how best to collect, analyze, and draw conclusions from data" (from the textbook)
+
+--
+
+- **Statistics**: "a branch of mathematics dealing with the collection, classification, analysis, interpretation of numerical facts, for drawing inferences on the basis of their quantifiable likelihood (probability) of data." (from [Wikipedia](https://en.wikipedia.org/wiki/Statistics))
+
+--
+
+- **Statistics**: "the study of variation" (my definition)
+
+---
+class: primary
+# Statistics in context
+
+General investigative process: 
+
+1. Identify a question or problem.
+2. Collect relevant data on the topic. 
+3. Analyze the data.
+4. Form a conclusion.
+
+Where do you think "statistics" fit in?
+
+---
+class: primary
+# Statistics in context
+
+General investigative process: 
+
+1. Identify a question or problem.
+2. .red[Collect relevant data on the topic.] 
+3. .red[Analyze the data.]
+4. .red[Form a conclusion.]
+
+.red[Statistics focuses on making stages 2-4 objective, rigorous, and efficient]
+
+---
+class: primary
+# The three pieces of statistics 
+
+1. How *best* can we collect data? 
+2. How *should* it be analyzed? 
+3. And what can we *infer* from the analysis?
+
+---
+class: primary
+# Classical application
+
+Medical trials - e.g. testing a new drug
+
+1. Identify a question or problem.
+2. Collect relevant data on the topic. 
+3. Analyze the data.
+4. Form a conclusion.
+
+---
+class: primary
+# Step 1
+
+Step 1: Identify a question or problem.
+
+*Does the use of stents reduce the risk of stroke?*
+
+Will patients with stents inserted have better outcomes (fewer and/or more minor strokes) than patients without stents inserted? 
+
+Stents - "a metal or plastic tube inserted into the lumen of an anatomic vessel or duct to keep the passageway open" ([Wikipedia](https://en.wikipedia.org/wiki/Stent))
+
+---
+class: primary
+# Step 2
+
+Step 2: Collect relevant data on the topic. 
+
+451 at-risk patients volunteered to be studied. Split into 2 groups:
+
+- **Treatment** group (224 patients): Received a stent and medical management (medications, management of risk factors, and help in lifestyle modification)
+- **Control** group (227 patients): Received same medical management as treatment group, but did not receive stents.
+
+What is the purpose of the control group? 
+
+---
+class: primary
+# Step 2
+
+Step 2: Collect relevant data on the topic. 
+
+451 at-risk patients volunteered to be studied. Split into 2 groups:
+
+- **Treatment** group (224 patients): Received a stent and medical management (medications, management of risk factors, and help in lifestyle modification)
+- **Control** group (227 patients): Received same medical management as treatment group, but did not receive stents.
+
+What is the purpose of the control group? 
+
+.red[The control group provides a reference point against which we can measure the medical impact of stents in the treatment group.]
+
+---
+class: primary
+# Step 2 (cont.)
+
+- Researchers looked at 2 time points: 30 days after enrollment and 365 days after enrollment 
+- Results of 5 patients: 
+
+Patient | group | after 30 days | after 365 days
+:------:|:------|:-------------:|:-------------:
+1       | treatment | no event  | no event
+2       | treatment | stroke    | stroke 
+3       | treatment | no event  | no event 
+...     | ...       |   ...     |  ...
+450     | control   | no event  | no event
+451     | control   | no event  | no event
+
+---
+class: primary
+# Step 2 (cont.)
+
+All outcomes in all patients in all groups: 
+
+group | timepoint | outcome | count 
+:-----|:---------:|:-------:|:----:
+treatment | 0-30 days | stroke | 33
+treatment | 0-30 days | no event | 191  
+treatment | 0-365 days | stroke | 45
+treatment | 0-365 days | no event | 179
+control | 0-30 days | stroke | 13
+control | 0-30 days | no event | 214
+control | 0-365 days | stroke | 28
+control | 0-365 days | no event | 199
+
+---
+class: primary
+# Step 3
+
+Step 3: Analyze the data. 
+
+**Summary statistic** - one numerical value that summarizes a large amount of data 
+
+What do you think would be a good summary statistic for this data? 
+
+---
+class: primary
+# Step 3
+
+Step 3: Analyze the data
+
+**Summary statistic** - one numerical value that summarizes a large amount of data 
+
+What do you think would be a good summary statistic for this data? .red[Proportion of patients having a stroke]
+
+- Proportion of patients who had a stroke in the treatment group: 45/224 = 0.20 = 20%. 
+- Proportion of patients who had a stroke in the control group: 28/227 = 0.12 = 12%.
+- Overall proportion of patients who had a stroke: 73/451 = 0.16 = 16%
+
+---
+class: primary
+# Step 4
+
+Step 4: Form a conclusion.
+
+Surprising result: treatment group has higher rate of stroke (8% more)
+
+- Not what doctors expect
+- Is this difference meaningful? 
+
+Not yet equipped with statistical tools to answer the 2nd question: is the difference between stent and non-stent groups so large that we should reject the notion that it was due to random variation? 
+
+We'll get there eventually! 
+
+---
+class: primary
+# Your Turn 1.1.1
+
+Researchers studying the effect of temperature on glass looked at the refractive index (RI) measured on 89 different types of glass before and after being exposed to extreme temperatures. The RI value on all glass types was recorded, then the glass was exposed to very cold ( `\(0^o\)` F) or very hot ( `\(400^o\)` F) conditions for 20 minutes. After the glass returned to room temperature, the researchers measured the RI again to see if it was the same or if it had changed. Results are summarized below: 
+
+Group | change | no change | Total
+:-----|:------:|:---------:|------:
+Heat  | 10     | 33        | 43
+Cold  |  2     |  44       |   46
+------|--------|-----------|--------
+Total | 12     | 77        | 89
+
+---
+class: primary
+# YT 1.1.1 (cont.)
+
+Group | change | no change | Total
+:-----|:------:|:---------:|------:
+Heat  | 10     | 33        | 43
+Cold  |  2     |  44       |   46
+------|--------|-----------|--------
+Total | 12     | 77        | 89
+
+1. What percent of observations had a change in RI after being exposed to extreme heat? What percent of observations had a change in RI after being exposed to extreme cold?
+2. At first glance, does exposure to extreme temperatures appear to have an effect on RI of glass? Explain.
+3. Do the data provide convincing evidence that there is a real change in RI for either group? 
+4. Do you think the effect may just be due to random variability (as opposed to temperature)? 
+
+---
+class: primary
+# YT 1.1.1 (soln.)
+
+Group | change | no change | Total
+:-----|:------:|:---------:|------:
+Heat  | 10     | 33        | 43
+Cold  |  2     |  44       |   46
+------|--------|-----------|--------
+Total | 12     | 77        | 89
+
+1. What percent of observations had a change in RI after being exposed to extreme heat? .red[ `\(\frac{10}{43} = 0.23 = 23\%\)` ]
+ What percent of observations had a change in RI after being exposed to extreme cold? .red[ `\(\frac{2}{46} = 0.04 = 4\%\)` ]
+2. At first glance, does exposure to extreme temperatures appear to have an effect on RI of glass? Explain. .red[Heat, yes. Cold, no.]
+3. Do the data provide convincing evidence that there is a real change in RI for either group? .red[(discussion)]
+4. Do you think the effect may just be due to random variability (as opposed to temperature)? .red[(discussion)]
+
+---
+class: inverse, center
+# Section 1.2: Data basics
+
+---
+class: primary
+# Data "storage"
+
+Data are stored in **tables** aka **matrices**
+
+![Red Pill or blue pill?](img/neo.jpg)
+
+---
+class: primary
+# Data "storage"
+
+Data are stored in **tables** aka **matrices**: 
+
+- each row is an **observation**
+- each column is a **variable**
+- data are stored in a **matrix**
+- Example: 6 randomly selected obervations of 6 variables on glass element analysis. (units of last 3 columns are ppm)
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; pane &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Piece &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Rep &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Li7 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Na23 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Mg25 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; P3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 109700 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24330 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; P1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 101050 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23360 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; P4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 105240 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24500 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; P2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 102200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23180 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; P2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 101900 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23050 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; P1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.69 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100530 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23790 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: primary
+# Types of variables
+
+![Types of variables](img/variables.png)
+
+[Link to Image Source (from textbook)](https://github.com/OpenIntroOrg/openintro-statistics/blob/master/ch_intro_to_data/figures/variables/variables.pdf) 
+
+---
+class: primary
+# Variable Relationships
+
+Most (if not all) analyses are performed in order to determine if there is a relationship between variables
+
+Is there a relationship between these two variables in the glass data? 
+
+&lt;img src="intro-data_files/figure-html/glassscatterpos-1.png" width=".8\textwidth" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Variable Relationships
+
+Is there a relationship between these two variables in the glass data? 
+
+&lt;img src="intro-data_files/figure-html/glassscatterneg-1.png" width=".8\textwidth" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Variable Relationships
+
+Is there a relationship between these two variables in the glass data? 
+
+&lt;img src="intro-data_files/figure-html/glassscatternon-1.png" width=".8\textwidth" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Variable Relationships
+
+- **positive** association (correlation) between 2 variables 
+- **negative** association (correlation) between 2 variables 
+- **no** association between two variables 
+
+---
+class: primary
+# Variable Relationships
+
+- **Positive** association: Values of one variable tend to **increase** when values of the other variable increase
+- **Negative** association: Values of one variable tend to **decrease** when values of the other variable increase
+- **No** association: **Independence** occurs when there is no relationship between two variables 
+
+---
+class: primary
+# Your Turn 1.2.1
+
+Researchers collected data to examine the relationship between air pollutants and preterm births in Southern California. During the study air pollution levels were measured by air quality monitoring stations. Levels of `\(CO\)` were recorded in ppm, `\(NO_2\)` and `\(O_3\)` in pphm, and coarse particulate matter ( `\(PM_{10}\)` ) in `\(\mu g/m^3\)`. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient `\(PM_{10}\)` and, to a lesser degree, `\(CO\)` concentrations may be associated with the occurrence of preterm births. In this study, identify: 
+
+1. The observational units
+2. The variables and their types
+3. The main research question
+
+---
+class: primary
+# YT 1.2.1 (soln.)
+
+Researchers collected data to examine the relationship between air pollutants and preterm births in Southern California. During the study air pollution levels were measured by air quality monitoring stations. Levels of `\(CO\)` were recorded in ppm, `\(NO_2\)` and `\(O_3\)` in pphm, and coarse particulate matter ( `\(PM_{10}\)` ) in `\(\mu g/m^3\)`. Length of gestation data were collected on 143,196 births between the years 1989 and 1993, and air pollution exposure during gestation was calculated for each birth. The analysis suggested that increased ambient `\(PM_{10}\)` and, to a lesser degree, `\(CO\)` concentrations may be associated with the occurrence of preterm births. In this study, identify: 
+
+1. The observational units - .red[143,196 births in Southern California from 1989-1993]
+2. The variables and their types - .red[Length of gestation, `\(CO\)`, `\(NO_2\)`, `\(O_3\)`, and `\(PM_{10}\)`. All are numerical &amp; continuous]
+3. The main research question - .red[Is there an association between pregnant mothers' exposure to air pollution and preterm births?]
+
+---
+class: primary
+# Your Turn 1.2.2
+
+A survey was conducted to study the smoking habits of UK residents. Below is a data matrix displaying a portion of the data collected in this survey. Note that NA refers to a missing component of the data.
+
+.small[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; gender &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; age &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; maritalStatus &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; grossIncome &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; smoke &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; amtWeekends &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; amtWeekdays &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Male &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Divorced &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2,600 to 5,200 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; No &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Female &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 42 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Single &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Under 2,600 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Yes &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Male &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Married &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 28,600 to 36,400 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; No &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1691 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Male &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Married &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 10,400 to 15,600 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; No &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+] 
+
+1. What does each row of the data matrix represent?
+2. How many participants were included in the survey?
+3. Indicate whether each variable in the study is numerical or categorical. If numerical, identify as continuous or discrete. If categorical, indicate if the variable is ordinal.
+
+---
+class: primary
+#YT 1.2.2 (soln.)
+
+A survey was conducted to study the smoking habits of UK residents. Below is a data matrix displaying a portion of the data collected in this survey. Note that NA refers to a missing component of the data.
+
+1. What does each row of the data matrix represent? .red[a person living in the UK]
+2. How many participants were included in the survey? .red[1691]
+3. Indicate whether each variable in the study is numerical or categorical. If numerical, identify as continuous or discrete. If categorical, indicate if the variable is ordinal. .red[Numerical: age, amtWeekends, amtWeekdays (discrete). Categorical: gender, marital, grossIncome (ordinal), smoke]
+
+---
+class: inverse, center
+# Section 1.3: Data collection principles
+
+---
+class: primary
+# Populations and samples
+
+Consider 3 research questions
+
+1. What is the average lead content in float glass manufactured in the US? 
+2. Since 2010, what is the average length of the training process to become a forensic scientist in the US? 
+3. Does a new powder lift up higher quality latent prints than the standard powder? 
+
+For each question: What is the **population** of interest? What would a **sample** be?
+
+---
+class: primary
+# Populations and samples
+
+1. **Population**: All float glass manufactured in the US. **Sample**: The windows in Durham Center.
+2. **Population**: All forensic scientists who started training in 2010 or later. **Sample**: The new and recent hires at Iowa's DCI Lab
+3. **Population**: All latent prints. **Sample**: Some latent prints picked up in this conference room.
+
+---
+class: primary
+# Summary
+
+**Population**: all items you're interested in for your research questions
+
+**Sample**: the subset of items in the population that you collect data on
+
+---
+class: primary
+# Anecdotal evidence
+
+Anecdote = story
+
+One or two or a handful of observations cannot be  proof of a pattern 
+
+Haphazard, cherry-picked examples `\(\neq\)` Science! 
+
+---
+class: primary
+# Sampling from a population
+
+Sampling should be **random**
+
+- think about a raffle or roll of a die
+- every person has one ticket, every number has one side of the die 
+
+
+Sampling should be **representative**
+
+- all elements of the population should have a chance to be in the sample
+
+---
+class: primary
+# Where sampling goes wrong
+
+- **bias**: the method of collection favors one type of response over others. Example: 
+
+
+&lt;img src="img/dewey.jpg" class="center"&gt;
+
+---
+class: primary
+# Where sampling goes wrong 
+
+- **non-response**: is a survey where only 20% of people respond *actually* representative? 
+
+Example: survey on drug use in teenagers 
+
+- **convenience sample**: only sample people/things that are most accessible. Sample is not represenative.
+
+Example: How much do people spend on groceries every week? Standing outside of Whole Foods will get very different answers than standing outside of Wal-Mart
+
+---
+class: primary
+# Simple random sampling
+
+Simple random sampling (SRS) is the best way to sample in most cases
+
+- every element of the population could be selected 
+- every element of the poulation has the same chance of being selected 
+
+---
+class: primary
+# Explanatory and response
+
+**response** variable: the main thing you want to know about your data
+
+What is the response variable in the 3 scenarios from earlier? 
+
+1. What is the average lead content in float glass manufactured in the US? 
+2. Since 2010, what is the average length of the training process to become a forensic scientist in the US? 
+3. Does a new powder lift up higher quality latent prints than the standard powder? 
+
+---
+class: primary
+# Explanatory and response 
+
+**response** variable: the main thing you want to know about your data
+
+What is the response variable in the 3 scenarios from earlier? 
+
+1. What is the average lead content in float glass manufactured in the US? .red[Lead content measured in glass]
+2. Since 2010, what is the average length of the training process to become a forensic scientist in the US?  .red[time a forensic scientist spent in training (in months)]
+3. Does a new powder lift up higher quality latent prints than the standard powder? .red[print quality/clarity]
+
+---
+class: primary
+# Explanatory and response 
+
+**explanatory** variable: may have an effect on the response variable, and you want to study the relationship between the response and expanatory variables
+
+What is the explanatory variable in the 3 scenarios from earlier (if applicable)? 
+
+1. What is the average lead content in float glass manufactured in the US? 
+2. Since 2010, what is the average length of the training process to become a forensic scientist in the US? 
+3. Does a new powder lift up higher quality latent prints than the standard powder? 
+
+---
+class: primary
+# Explanatory and response 
+
+**explanatory** variable: may have an effect on the response variable, and you want to study the relationship between the response and expanatory variables
+
+What is the explanatory variable in the 3 scenarios from earlier (if applicable)? 
+
+1. What is the average lead content in float glass manufactured in the US? .red[(discussion)]
+2. Since 2010, what is the average length of the training process to become a forensic scientist in the US? .red[(discussion)]
+3. Does a new powder lift up higher quality latent prints than the standard powder? .red[powder type (new or old)]
+
+---
+class: primary
+# Correlation `\(\neq\)` Causation
+
+An association between the explanatory and response variable does not always mean that the explanatory variable causes the change in the response variable.
+
+&lt;img src="intro-data_files/figure-html/spurious-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Causation: only from experiments
+
+- To determine a causal relationship between and explanatory and response variable, an *experiment* must be done
+- Often unethical or impossible to do an experiment (e.g. smoking and lung cancer), so an **observational study** is a substitute
+
+---
+class: primary
+# Your Turn 1.3.1 
+
+Recall the study where researchers collected data to examine the relationship between air pollutants and preterm births in Southern California. 
+
+1. Identify the population of interest and the sample in this study.
+2. Comment on whether or not the results of the study can be generalized to the population, and
+if the findings of the study can be used to establish causal relationships.
+
+---
+class: primary
+# YT 1.3.1 (soln.)
+
+Recall the study where researchers collected data to examine the relationship between air pollutants and preterm births in Southern California. 
+
+1. Identify the population of interest and the sample in this study. .red[Population: all births. Sample: 143,196 births between 1989-1993 in Southern California]
+2. Comment on whether or not the results of the study can be generalized to the population, and
+if the findings of the study can be used to establish causal relationships. .red[(discussion)]
+
+---
+class: primary
+# YT 1.3.2
+
+Researchers are interested in predicting the amount of lead in a pane of glass by measuring the content of another element that is much cheaper to measure, rubidium. A random sample of 193 panes of glass from homes built before 1950 in Ames, Iowa was taken. The scatterplot below displays the relationship between these two elements.
+
+&lt;img src="intro-data_files/figure-html/yourturn23-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# YT 1.3.2 (cont.)
+
+&lt;img src="intro-data_files/figure-html/yourturn232-1.png" style="display: block; margin: auto;" /&gt;
+
+1. What is the explanatory variable and what is the response variable?
+2. Describe the relationship between the two variables.
+3. Is this an experiment or an observational study?
+4. Can we conclude that more rubidium in the glass means more lead in the glass?
+
+---
+class: primary
+# YT 1.3.2 (soln.)
+
+1. What is the explanatory variable and what is the response variable? .red[Explanatory variable: rubidium concentration; Respons variable: lead concentration]
+2. Describe the relationship between the two variables. .red[There is a slight positive association between the two, meaning that lead content may increase with rubidium content.]
+3. Is this an experiment or an observational study? .red[Observational (no control)]
+4. Can we conclude that more rubidium in the glass means more lead in the glass?  .red[No, because we can not infer a causal relationship without an experiment.]
+
+---
+class: inverse, center
+# Section 1.4: Obervations and samples
+
+---
+class: primary
+# Observational studies
+
+- researchers *observe* the data
+- no intereference 
+- there may be **counfounding** variables that are correlated with both the explanatory and response variables 
+
+---
+class: primary
+# Sampling strategies
+
+- **Simple random sampling**
+- **Stratified sampling**
+- **Cluster sampling**
+- **Multistage sampling**
+- **Census**
+
+---
+class: primary
+# Simple random sampling 
+
+- all elements have the same chance of being chosen
+- the selection of one element does not affect the chances of a second element being selected 
+
+&lt;img src="intro-data_files/figure-html/sampling-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Stratified sampling 
+
+- Population is made up of different groups or **strata** 
+- "divide and conquer" 
+- elements within a strata are more similar than elements from different strata
+- draw simple random samples from each strata
+
+&lt;img src="intro-data_files/figure-html/strsamp-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: primary
+# Cluster sampling
+
+- Divide population into representative **clusters**
+- Clusters are similar
+- Randomly sample clusters, and then take a census of all elements in the cluster
+
+&lt;img src="intro-data_files/figure-html/cluster-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Multistage sampling 
+
+- Like cluster sampling, but take a random sample from the clusters instead of a census
+- Done when getting an observation is very expensive
+
+---
+class: primary
+# Census
+
+- Observe all elements in a population
+- Rarely done because it's so expensive
+
+&lt;img src="intro-data_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Your Turn 1.4.1 
+
+The following scatterplot was created as part of a study evaluating the relationship between estimated life expectancy at birth (as of 2014) and percentage of internet users (as of 2009) in 208 countries for which such data were available.
+
+&lt;img src="intro-data_files/figure-html/yourturn141-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# YT 1.4.1 (cont.)
+
+&lt;img src="intro-data_files/figure-html/yourturn142-1.png" style="display: block; margin: auto;" /&gt;
+
+1. Describe the relationship between life expectancy and percentage of internet users. 
+2. What type of study is this? 
+3. State a possible confounding variable that might explain this relationship and describe its potential effect. 
+
+---
+class: primary
+# YT 1.4.1 (soln.)
+
+&lt;img src="intro-data_files/figure-html/yourturn143-1.png" style="display: block; margin: auto;" /&gt;
+
+1. Describe the relationship between life expectancy and percentage of internet users. .red[Positive, non-linear relationship. Levels off at around age 75]
+2. What type of study is this? .red[Observational]
+3. State a possible confounding variable that might explain this relationship and describe its potential effect. .red[(discussion)]
+
+---
+class: primary
+# Your Turn 1.4.2
+
+Identify the flaw(s) in reasoning in the following scenarios. What should have been done differently to arrive at the desired conclusions?
+
+.small[
+1. Students at an elementary school are given a questionnaire that they are asked to return after their parents have completed it. One of the questions asked is, "Do you find that your work schedule makes it difficult for you to spend time with your kids after school?" Of the parents who replied, 85% said "no". Based on these results, the school o cials conclude that a great majority of the parents have no difficulty spending time with their kids after school.
+
+2. A survey is conducted on a simple random sample of 1,000 crime victims (robbery, assault, etc.) asking whether or not they saught mental health counseling after their crime. A follow-up survey asking asking the same question 3 years later is condcuted, however, only 567 of these original participants are reached at the same address. The researcher reports that these 567 people are representative of all crime victims.
+]
+
+
+---
+class: primary
+# YT 1.4.2 (soln.)
+
+Identify the flaw(s) in reasoning in the following scenarios. What should have been done differently to arrive at the desired conclusions?
+
+.small[
+1. Students at an elementary school are given a questionnaire that they are asked to return after their parents have completed it. One of the questions asked is, "Do you find that your work schedule makes it difficult for you to spend time with your kids after school?" Of the parents who replied, 85% said "no". Based on these results, the school o cials conclude that a great majority of the parents have no difficulty spending time with their kids after school. .red[Parents with time to fill out a survey probably have more time to spend with their children after work. (discussion)]
+
+2. A survey is conducted on a simple random sample of 1,000 crime victims (robbery, assault, etc.) asking whether or not they saught mental health counseling after their crime. A follow-up survey asking asking the same question 3 years later is condcuted, however, only 567 of these original participants are reached at the same address. The researcher reports that these 567 people are representative of all crime victims. .red[People who moved away may have felt unsafe, perhaps they would not have felt unsafe if they saught counseling. (discussion)]
+]
+
+---
+class: primary
+# Your Turn 1.4.3
+
+Below is an excerpt from an article published in the NY Times, ["Risks: Smokers Found More Prone to Dementia":](https://www.nytimes.com/2010/11/02/health/research/02risks.html)
+
+"Researchers analyzed the data of 23,123 health plan members who participated in a voluntary exam and health behavior survey from 1978 to 1985, when they were 50 to 60 years old. 23 years later, about 1/4 of the group, or 5,367, had dementia, including 1,136 with Alzheimer’s disease and 416 with vascular dementia. After adjusting for other factors, the researchers concluded that pack-a-day smokers were 37% more likely than nonsmokers to develop dementia, and the risks went up sharply with increased smoking; 44% for 1-2 packs a day; and twice the risk for more than 2 packs."
+
+Based on this study, can we conclude that smoking causes dementia later in life? Explain.
+
+---
+class: primary
+# YT 1.4.3 (soln.)
+
+Below is an excerpt from an article published in the NY Times, ["Risks: Smokers Found More Prone to Dementia":](https://www.nytimes.com/2010/11/02/health/research/02risks.html) 
+
+"Researchers analyzed the data of 23,123 health plan members who participated in a voluntary exam and health behavior survey from 1978 to 1985, when they were 50 to 60 years old. 23 years later, about 1/4 of the group, or 5,367, had dementia, including 1,136 with Alzheimer’s disease and 416 with vascular dementia. After adjusting for other factors, the researchers concluded that pack-a-day smokers were 37% more likely than nonsmokers to develop dementia, and the risks went up sharply with increased smoking; 44% for 1-2 packs a day; and twice the risk for more than 2 packs."
+
+Based on this study, can we conclude that smoking causes dementia later in life? Explain.
+
+.red[Association does not equal causation. Observational study, not experiment. However, experiment would be unethical in this case.]
+
+---
+class: primary
+# Your Turn 1.4.4
+
+Below is another excerpt from another article published in the NY Times, ["The School Bully is Sleepy":](https://well.blogs.nytimes.com/2011/06/02/the-school-bully-is-sleepy) 
+
+"The University of Michigan study collected data from parents on each child’s sleep habits and asked both parents and teachers to assess behavioral concerns. Among the 341 children studied, about a third were identified by parents or teachers as having problems with disruptive behavior or bullying. The researchers found that children who had behavioral issues were twice as likely to have shown symptoms of sleep-disordered breathing, like snoring or daytime sleepiness."
+
+A friend of yours who read the article says, "The study shows that sleep disorders lead to bullying in school children." Is this statement justified? If not, how best can you describe the conclusion that can be drawn from this study?
+
+---
+class: primary
+# YT 1.4.4 (soln.)
+
+Below is another excerpt from another article published in the NY Times, ["The School Bully is Sleepy":](https://well.blogs.nytimes.com/2011/06/02/the-school-bully-is-sleepy)
+
+"The University of Michigan study collected data from parents on each child’s sleep habits and asked both parents and teachers to assess behavioral concerns. Among the 341 children studied, about a third were identified by parents or teachers as having problems with disruptive behavior or bullying. The researchers found that children who had behavioral issues were twice as likely to have shown symptoms of sleep-disordered breathing, like snoring or daytime sleepiness."
+
+A friend of yours who read the article says, "The study shows that sleep disorders lead to bullying in school children." Is this statement justified? If not, how best can you describe the conclusion that can be drawn from this study? 
+
+.red[Association does not equal causation. Observational study, not experiment. Both sleep problems and bullying behaviors could be caused by other confounding variables]
+
+
+---
+class: inverse, center
+# Section 1.5: Experiments
+
+---
+class: primary
+# What are experiments? 
+
+- Researchers *assign* treatment to participants
+- If treatment is *randomly* assigned, then it is a **randomized experiment**
+
+---
+class: primary
+# Experimental design 
+
+There are 5 principles of experimental design:
+
+- **Control**: researchers control as much as possible. (This is the reason for placebos. Everyone takes a medication without knowing whether it contains active ingredients.)
+- **Randomization**: "evens out" differences that are outside of the researchers' control
+- **Replication**: get a large sample! 
+- **Blocking**: similar to stratified sampling, where each block shares some characteristic, and treatments are randomly assigned within block
+- **Blinding**: the people in the experiment don't know which treatment group they are in. A study is **double-blind** if neither the people receiving nor the people giving the treatment know what the treatment is
+
+---
+class: primary
+# Designing an Experiment 
+
+You would like to conduct an experiment to see if forensic scientists perform better at their jobs if they listen to music when they work.  You want to determine if they work best without any music, with music that has no lyrics (instrumental), or with music that has lyrics. Briefly outline a design for this study.
+
+
+---
+class: primary
+# Designing an Experiment 
+
+You would like to conduct an experiment to see if forensic scientists perform better at their jobs if they listen to music when they work.  You want to determine if they work best without any music, with music that has no lyrics (instrumental), or with music that has lyrics. Briefly outline a design for this study.
+
+- **Control**
+- **Randomization**
+- **Replication** 
+- **Blocking**
+- **Blinding**
+
+---
+class: primary
+# Designing an Experiment 
+
+You would like to conduct an experiment to see if forensic scientists perform better at their jobs if they listen to music when they work.  You want to determine if they work best without any music, with music that has no lyrics (instrumental), or with music that has lyrics. Briefly outline a design for this study.
+
+- **Control**: .red[Control who listens to what music. Also, control group is no music]
+- **Randomization**: .red[Randomly assign all forensic scientists in the lab who volunteer to one of the three groups]
+- **Replication**:  .red[make sure there are many people in each group]
+- **Blocking**: .red[not required. could maybe block by age.]
+- **Blinding**: .red[Not possible here. Everyone knows which music they are listening to.]
+
+---
+class: primary
+# Your Turn 1.5.1 
+
+.small[
+A researcher is interested in the effects of exercise on mental health and he proposes the following study: Use stratified random sampling to ensure representative proportions of 18-30, 31-40 and 41- 55 year olds from the population. Next, randomly assign half the subjects from each age group to exercise twice a week, and instruct the rest not to exercise. Conduct a mental health exam at the beginning and at the end of the study, and compare the results.]
+
+1. What type of study is this?
+2. What are the treatment and control groups in this study?
+3. Does this study make use of blocking? If so, what is the blocking variable?
+4. Does this study make use of blinding?
+5. Comment on whether or not the results of the study can be used to establish a causal relationship between exercise and mental health, and indicate whether or not the conclusions can be generalized to the population at large.
+6. Suppose you are given the task of determining if this proposed study should get funding. Would you have any reservations about the study proposal?
+
+---
+class: primary
+# YT 1.5.1 (soln.)
+.small[
+A researcher is interested in the effects of exercise on mental health and he proposes the following study: Use stratified random sampling to ensure representative proportions of 18-30, 31-40 and 41- 55 year olds from the population. Next, randomly assign half the subjects from each age group to exercise twice a week, and instruct the rest not to exercise. Conduct a mental health exam at the beginning and at the end of the study, and compare the results.
+
+1. What type of study is this? .red[Experiment]
+2. What are the treatment and control groups in this study? .red[Treatment: excercise 2 times per week, Control: no exercise]
+3. Does this study make use of blocking? If so, what is the blocking variable? .red[Yes, on age groups]
+4. Does this study make use of blinding? .red[No. Participants know what group they are in.]
+5. Comment on whether or not the results of the study can be used to establish a causal relationship between exercise and mental health, and indicate whether or not the conclusions can be generalized to the population at large. .red[Yes, because it is an experiment. Only generalizable for ages 18-55]
+6. Suppose you are given the task of determining if this proposed study should get funding. Would you have any reservations about the study proposal? .red["Exercise" is not specific enough. Ethical concerns with instructing people to NOT exercise (something known to have health benefits)]
+]
+
+---
+class: inverse, center
+# Section 1.6: Looking at Numerical Data
+
+---
+class: primary
+# Scatterplots
+
+- two numerical variables 
+
+&lt;img src="intro-data_files/figure-html/glassscatterpos2-1.png" width=".8\textwidth" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Histogram 
+
+- one numerical variable 
+
+&lt;img src="intro-data_files/figure-html/glasshist-1.png" width=".8\textwidth" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Boxplots 
+
+- assess distribution of one numerical variable
+
+&lt;img src="intro-data_files/figure-html/glassboxpl-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Boxplots
+
+- compare distribution of a numerical variable across different values of a categorical variable 
+
+&lt;img src="intro-data_files/figure-html/glassboxpl2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Your Turn 1.6.1 
+
+Indicate which plots show a positive association, a negative association, and no association. If there is an association, is it linear or non-linear? 
+
+&lt;img src="intro-data_files/figure-html/yourturn161-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# YT 1.6.1 (soln.)
+
+Indicate which plots show a positive association, a negative association, and no association. If there is an association, is it linear or non-linear? 
+
+- positive: 1 (linear), 3 (non-linear) 
+- negative: 4 (linear)
+- no association: 2
+
+---
+class: primary
+# Your Turn 1.6.2 
+
+For each part, compare distributions (a) and (b) based on their medians and IQRs. 
+.small[
+1. Compare these two datasets 
+
+    a. 3, 5, 6, 7, 9
+    
+    b. 3, 5, 6, 7, 20
+    
+2. Compare these two datasets
+
+    a. 3, 5, 6, 7, 9 
+
+    b. 3, 5, 7, 8, 9
+
+3. Compare these two datasets
+
+    a. 1, 2, 3, 4, 5
+
+    b. 6, 7, 8, 9, 10
+
+4. Compare these two datasets
+
+    a. 0, 10, 50, 60, 100
+
+    b. 0, 100, 500, 600, 1000
+]
+
+---
+class: primary
+# YT 1.6.2  (soln.)
+
+For each part, compare distributions (1) and (2) based on their medians and IQRs. 
+
+.small[
+1. .red[Same median (6) and IQR (2), outlier in (b) at 20]
+
+    a. 3, 5, 6, 7, 9 
+
+    b. 3, 5, 6, 7, 20 
+    
+2.  .red[(a) has Med.=6, IQR = 2, (b) tends to have higher values, has more variability (Med.=7, IQR = 3)]
+
+    a. 3, 5, 6, 7, 9 
+
+    b. 3, 5, 7, 8, 9 
+    
+3. .red[Same IQR, (b) has higher median than (a) (8 vs 3)]
+
+    a. 1, 2, 3, 4, 5
+
+    b. 6, 7, 8, 9, 10 
+    
+4. .red[Both have median equal to IQR. (a) much smaller than (b). Median/IQR of 50 vs. 500]
+
+    a. 0, 10, 50, 60, 100 .red[Med.=50, IQR = 50]
+
+    b. 0, 100, 500, 600, 1000 .red[Med.=500, IQR = 500]
+]
+
+---
+class: primary
+# Your Turn 1.6.3
+
+Describe the data in the histograms and match them to the boxplots.
+
+&lt;img src="intro-data_files/figure-html/yourturn163-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# YT 1.6.3 (soln.)
+
+Histogram | Boxplot
+:--------:|:-------:
+a         | 2
+b         | 3
+c         | 1 
+
+---
+class: inverse, center
+# Section 1.7: Looking at Categorical data
+
+---
+class: primary
+# Contingency tables 
+
+- contigency tables show observed counts of categorical variables
+- Example: `titanic` data 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Class &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Died &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Survived &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1st &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 122 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 203 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 325 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2nd &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 167 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 118 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 285 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3rd &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 528 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 178 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 706 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Crew &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 673 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 212 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 885 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1490 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 711 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2201 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: primary
+# Bar charts
+
+- show counts of different groups in the data 
+
+&lt;img src="intro-data_files/figure-html/titanic2-1.png" width="99%" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Mosaic Plots
+
+- plots to compare two categorical variables 
+
+&lt;img src="intro-data_files/figure-html/mosa-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Your Turn 1.7.1 
+
+The bar plot and the pie chart below show the ditribution of blood types in the US. 
+
+&lt;img src="intro-data_files/figure-html/bloodtypes-1.png" width="99%" height="50%" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# YT 1.7.1 (cont.)
+
+1. What features are apparent in the bar plot but not in the pie chart? 
+2. What features are apparent in the pie chart but not in the bar plot?
+3. Which graph would you prefer to use for displaying these categorical data?
+
+---
+class: primary
+# YT 1.7.1 (soln.)
+
+1. What features are apparent in the bar plot but not in the pie chart? .red[We see the order of the categories and the relative frequencies in the bar plot.]
+2. What features are apparent in the pie chart but not in the bar plot? .red[There are no features that are apparent in the pie chart but not in the bar plot.]
+3. Which graph would you prefer to use for displaying these categorical data? .red[We usually prefer to use a bar plot as we can also see the relative frequencies of the categories in this graph.]
+
+---
+class: primary
+# Your Turn 1.7.2 
+
+ A random sample of US registered voters were asked if they support the DREAM Act. The survey also asked about the political ideology of the respondents. Based on the mosaic plot shown on the next slide, do views on the DREAM Act and political ideology appear to be **independent** ? Explain.
+ 
+---
+class: primary
+# YT 1.7.2 (cont.)
+ 
+&lt;img src="intro-data_files/figure-html/yt172-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# YT 1.7.2 (soln.)
+
+A random sample of US registered voters were asked if they support the DREAM Act. The survey also asked about the political ideology of the respondents. Based on the mosaic plot shown on the next slide, do views on the DREAM Act and political ideology appear to be **independent** ? Explain.
+ 
+
+.red[The vertical locations at which the ideological groups break into the Yes, No, and Not Sure categories differ, which idicates that likelihood of supporting the DREAM act varies by political ideology. This suggests that the two variables may be dependent.]
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
