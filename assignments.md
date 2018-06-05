@@ -4,6 +4,12 @@ title: "CSAFE @ ISU REU"
 css: "/css/index.css"
 ---
 
+## Homework 
+
+Date Assigned | What | Date Due 
+:-------------|------|:--------
+6/5/28        | Ch. 1 problems 2, 4, 11, 14, 16, 20, 22, 26, 30, 32, 34, 40, 44, 52, 54, 66, 70a-c. Do all parts unless otherwise said | 6/8/2018 @ 4:00pm
+
 <div class="list-filters">
   <a href="/reu17" class="list-filter">All posts</a>
   <a href="/reu17/assignments" class="list-filter filter-selected">Assignments</a>
