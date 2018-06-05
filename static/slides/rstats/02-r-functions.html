@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Functions in R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Sam Tyner" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="csafe.css" type="text/css" />
+    <link rel="stylesheet" href="csafe-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Functions in <code>R</code>
+### Sam Tyner
+### 2018/06/05
+
+---
+
+
+class: primary
+# Functions
+
+A **function** in `R` takes *input* and returns *output*
+
+- Input is given in the form of *arguments* passed to the function
+- Output is what is *returned* from the function 
+
+---
+class: primary
+# Function help
+
+Help files usually have 6 most useful sections
+
+- **Description**: tells you what the function does (may not be super informative)
+- **Usage**: shows you how to use the function and all the arguments it takes with their defaults&lt;sup&gt;1&lt;sup/&gt; 
+- **Arguments**: describes the arguments used in the function and what type of value each one takes. There must always be a comma `,` between arguments.
+- **Details**: tells you more about how the function behaves
+- **Value**: describes what the function's output is 
+- **Examples**: shows you (hopefully working) examples of how to use the function 
+
+.footnote[1. Note: the default values of a function will be taken as arguments unless you change them. If a function argument has no default, you must provide a value for this argument.]
+
+---
+class: primary
+# Your Turn 2.1
+
+1. Create a numeric vector of length 10 called `x`
+2. Look at the help file for the function `sample()` (Hint: `?sample`)
+3. Create a new vector of length 100 called `samp_x` that contains a sample of size 100 from `x` with replacement. 
+
+---
+class: primary
+# Base `R` 
+
+Right now, you "only" have access to base `R` functions.
+
+Base `R` is incredibly powerful, and you can do many powerful statistical procedures, such as: 
+
+- simulation: `rnorm()`, `rbinom()`, `rt()`, and many more
+- Student's `\(t\)`-test: performs tests for population means (`t.test()`)
+- Fitting linear models with `lm()`
+- Fitting generalized linear models with `glm()`
+- and many more! 
+
+---
+class: primary
+# Wait, there's more! 
+
+We can install additional functionality in the form of `R` *packages*
+
+An `R` package: 
+
+- Contains a set of specialized functions
+- Usually all the functions are related to performing one type of task or data analysis (e.g. data cleaning, analyzing your Fitbit data, analyzing text data, etc.)
+- Can be installed by running `install.packages("packagename")` where `packagename` is the name of the package. It must be in quotes
+- Is only recognized by `R` when you `library` it. 
+    * Think of it like a library: if the book (here, a function in a package) isn't in the library, `R` can't find it and will return an error.
+    * Access the functions in the package by running `library("packagename")` or `library(packagename)`. Note you can use the quotes or not. (People are lazy so `R` accommodated them in this case.)
+    
+---
+class: primary
+# Your Turn 2.2
+
+One of the packages we will use is actually many packages in one! It is called `tidyverse`. You can read about it at [www.tidyverse.org](https://www.tidyverse.org/).
+
+Install this package and tell `R` you want to use its functions.
+
+---
+class: primary
+# Function Errors 
+
+When a function errors...
+
+- Don't panic! 
+- You didn't "break" anything 
+- `R` is dumb: it only does *exactly* what you tell it to do
+- If you told it to do something it can't read or can't do, it will error.
+- Trial and error is a constant with `R`. If at first you don't succeed, try and try again! 
+
+---
+class: primary 
+# Common Errors
+
+Here are some very common things beginners do that will cause `R` to error: 
+
+- Forgetting a comma `,` after an argument in a function 
+- Forgetting a parenthesis `)` or having too many parentheses. Each `(` must have a parter `)`. These are called the "open parenthesis" and the "close parenthesis"
+- Telling `R` to use a function in a package you haven't libraried yet
+- Using an object in a function that you haven't created yet 
+
+---
+class: primary
+# Error Messages
+
+Some error messages are more informative than others 
+
+- `Error: object 'my_data' not found` means you are trying to use the `my_data` object but haven't created it yet.
+- `Error in fun(arg): could not find function "fun"` means you are trying to use a function that you haven't libraried OR your spelled the function wrong
+- `Error: unexpected numeric constant in "yourcode"` means you probably forgot a comma after an argument in the function
+
+If you don't know what an error means, just Google it
+
+---
+class: primary
+# Function shortcuts
+
+RStudio has some built-in features that make writing code easier: 
+
+- Autocomplete function name: type the first few letters of a function and hit Tab. Several functions show up and  you can arrow through them and hit Enter when you find the one you want. Helpful if you forget how a function is spelled! 
+- Hover box showing function usage: after hitting Enter, a box pops up showing the Usage of the funtion so you know what arguments the function takes 
+- Argument completion: inside the empty `()` hit Tab to see all the function arguments available. 
+
+---
+class: primary
+# Finding Functions
+
+There are lots of different ways to find out what function to use in `R`:
+
+- Google: how to (do something) in R + CRAN
+- [CRAN Task Views](https://cran.r-project.org/web/views/): curated lists of packages online that are all related to some topic e.g. finance, genetics, graphics, and many more 
+- [StackOverflow](https://stackoverflow.com/questions/tagged/r)
+
+---
+class: primary
+# Your Turn 2.3
+
+Take some time to think about a statistical analysis you may be interested in doing. This can be anything from text analysis, to statistics in your favorite professional sport, or really any topic you can think of. 
+
+1. Try to find an `R` package that does the analysis you're interested in (or something close)
+2. Install the `R` package you find
+3. Find an example in the help file and try doing it yourself!
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

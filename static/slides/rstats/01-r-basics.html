@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to R</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Sam Tyner" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="csafe.css" type="text/css" />
+    <link rel="stylesheet" href="csafe-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction to <code>R</code>
+### Sam Tyner
+### 2018/06/05
+
+---
+
+
+
+
+class: primary
+# Open RStudio
+
+![](img/openrstudio.png)
+
+---
+class: secondary
+
+.small[
+RStudio is divided into 4 panes: 
+]
+
+![](img/rstudio4panes.png)
+
+---
+class: primary
+# Panes
+
+1. Source - these are files. You edit them here. You can run code from source files.
+2. Console - where the program `R` "lives." When you run code, it is executed here. The results also print out here. 
+3. Environment and others - the Environment tab shows you what variables and values you have stored in your R session. This is the only relevant tab for now. 
+4. Files, Plots, Help, and others
+
+    a. The Files tab navigates through files on your computer. You can open any file from there. 
+    
+    b. The Plots tab shows you any plot that you've created in `R`. (Note: it does NOT save the plot automatically)
+    
+    c. The Help tab lets you search for functions, topics, etc. to get help
+    
+---
+class: primary 
+# Your Turn 1.1
+
+1. Create a new folder on your computer called "LearningR". Make sure you put it somewhere you can easily find it. 
+2. In RStudio, create a new R script. Type "# hello R" in the first line. Save the file as "01-basics.R" in the LearningR folder. 
+
+---
+class: primary
+# Get to know panes 1, 2
+
+In pane 1 (the source) type `1 + 1` and hit Ctrl+Enter
+
+What happens? 
+
+---
+class: primary
+# Get to know panes 1, 2
+
+In pane 1 (the source) type `x &lt;- 1 + 1` and hit Ctrl+Enter
+
+What happens? 
+
+---
+class: primary
+# Get to know panes 1, 2
+
+In pane 2 (the console) type `2+2` and hit Enter
+
+What happens? 
+
+---
+class: primary
+# Get to know panes 1, 2
+
+In pane 2 (the console) type `y &lt;- 2+2` and hit Enter
+
+What happens? 
+
+---
+class: primary
+# The `&lt;-` operator
+
+In `R`, we call `&lt;-` "the assignment operator" 
+
+Think of it like an arrow: you are assigning whatever is on the right side of the arrow to the variable name on the left side of the arrow. 
+
+You can see what value is assigned to a variable name in 2 primary ways:
+
+1. Type the name of the variable (e.g. `x` or `y`) in the console and hit Enter. You will see the value of the variable print out.
+2. In the Environment tab in pane 3. 
+
+Keyboard shortcut to type `&lt;-`: Alt + - 
+
+---
+class: primary
+# More console
+
+![](img/rprompt.png)
+
+---
+class: primary
+# Vectors
+
+A **vector** is a bunch of values all strung together in one object
+
+Any object that stores data in `R` is called a **data structure**. 
+
+A **numeric vector** is a very simple type of data structure. 
+
+Let's create a small numeric vector with the function `c()`. The c stands for "combine". It takes the objects between the parentheses and makes them one object, a vector. 
+
+```
+z &lt;- c(x, y, 14, 1.5, pi, e)
+```
+
+---
+class: primary
+# Vectors (cont.)
+
+We can also combine vectors into new vectors. 
+
+Create a new vector called `abc` that combines `z`, `25`, and `z` again.
+
+```
+abc &lt;- c(z, 25, z)
+```
+
+---
+class: primary 
+# Vector Operations
+
+Math and other functions are done on vectors **element-wise**. 
+
+What do you think will happen when you run this code? 
+
+```
+z / 4 + 15
+```
+
+---
+class: primary
+# More math
+
+
+```r
+# Addition and Subtraction
+2 + 5 - 1
+```
+
+```
+## [1] 6
+```
+
+```r
+# Multiplication
+109*23452
+```
+
+```
+## [1] 2556268
+```
+
+```r
+# Division
+3/7
+```
+
+```
+## [1] 0.4285714
+```
+
+---
+class: primary
+# Calculator
+
+
+```r
+# Integer division
+7 %/% 2
+```
+
+```
+## [1] 3
+```
+
+```r
+# Modulo operator (Remainder)
+7 %% 2
+```
+
+```
+## [1] 1
+```
+
+```r
+# Powers
+1.5^3
+```
+
+```
+## [1] 3.375
+```
+
+```r
+# Square Root
+sqrt(16)
+```
+
+```
+## [1] 4
+```
+
+```r
+# Absolute value
+abs(-5)
+```
+
+```
+## [1] 5
+```
+
+---
+class: primary
+# Even More Functions
+
+- Exponentiation 
+    - `exp(x)`
+- Logarithms
+    - `log(x)`
+    - `log(x, base = 10)`
+- Trigonometric functions
+    - `sin(x)`
+    - `asin(x)`
+    - `cos(x)`
+    - `tan(x)`
+    
+---
+class: primary
+# OOO
+
+`R` obeys the *order of operations*, PEMDAS
+
+- Parentheses first
+- Exponents 
+- Multiplication / Division (left to right)
+- Addition / Subtraction (left to right)
+
+What does the following return? 
+
+```
+2 + (5 - 8)^2 
+```
+
+---
+class: primary
+# Rules for Variable Names
+
+- Variable names can't start with a number
+
+- Variables in `R` are case-sensitive: `myVar` and `myvar` are different to `R` 
+
+- Some common letters are used internally by R and should be avoided as variable names (c, q, t, C, D, F, T, I)
+
+- There are reserved words that R won't let you use for variable names. (for, in, while, if, else, repeat, break, next)
+
+- R *will* let you use the name of a predefined function.  Try not to overwrite those though!
+
+---
+class: inverse
+# Data Structures 
+
+---
+class: primary
+# Data Classes 
+
+There are 3 main data classes in `R` 
+
+1. Numeric - numbers
+2. Character - strings
+3. Logical - `TRUE` or `FALSE` 
+
+
+```r
+# 1. numeric
+c(1,3,9.5)
+```
+
+```
+## [1] 1.0 3.0 9.5
+```
+
+```r
+# 2. character 
+c("hello", "goodbye", "123")
+```
+
+```
+## [1] "hello"   "goodbye" "123"
+```
+
+```r
+# 3. logical
+c(TRUE, FALSE, F, T)
+```
+
+```
+## [1]  TRUE FALSE FALSE  TRUE
+```
+
+---
+class: primary
+# Data Structures
+
+Types of data structures 
+
+1. Vectors
+2. Matrices
+3. Data Frames 
+4. Lists
+
+---
+class: primary
+# Matrices 
+
+2 dimensional numeric data.
+
+
+```r
+mat1 &lt;- matrix(0, nrow = 4, ncol = 3)
+mat1
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    0    0    0
+## [2,]    0    0    0
+## [3,]    0    0    0
+## [4,]    0    0    0
+```
+
+---
+class: primary
+# Data Frames
+
+Similar to a matrix, but can have any type of data in it, and has named columns
+
+
+
+```r
+head(mpg)
+```
+
+```
+## # A tibble: 6 x 11
+##   manufacturer model displ  year   cyl trans drv     cty   hwy fl    class
+##   &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 audi         a4     1.80  1999     4 auto… f        18    29 p     comp…
+## 2 audi         a4     1.80  1999     4 manu… f        21    29 p     comp…
+## 3 audi         a4     2.00  2008     4 manu… f        20    31 p     comp…
+## 4 audi         a4     2.00  2008     4 auto… f        21    30 p     comp…
+## 5 audi         a4     2.80  1999     6 auto… f        16    26 p     comp…
+## 6 audi         a4     2.80  1999     6 manu… f        18    26 p     comp…
+```
+
+---
+class: primary
+# Lists 
+
+Store any type of data in a list 
+
+
+```r
+list(1:5, "hello", mat1)
+```
+
+```
+## [[1]]
+## [1] 1 2 3 4 5
+## 
+## [[2]]
+## [1] "hello"
+## 
+## [[3]]
+##      [,1] [,2] [,3]
+## [1,]    0    0    0
+## [2,]    0    0    0
+## [3,]    0    0    0
+## [4,]    0    0    0
+```
+
+---
+class: primary
+# Your Turn 1.2 
+
+Create a list using the `list()` function. It should have 3 elements: a character vector of length 3, a 2x3 matrix, and a numeric vector of length 5. 
+
+---
+class: inverse 
+# Getting Help with `R` 
+
+---
+class: primary
+# Help files 
+
+There are several ways to access help files 
+
+- The `help()` function 
+- In the "Help" tab of pane 3 in RStudio
+- By typing `?` or `??` before a function name in the console
+- Put cursor on a function in the Source and hit F1. 
+
+---
+class: primary
+# Online
+
+- StackOverflow
+- Google (CRAN + search term)
+- Vignettes (package vignette + search term)
+    * Or, in `R` run `vignette(package = "packagename")`
+
+---
+class: primary
+# `R` Cheat Sheets
+
+In RStudio: Help -&gt; Cheat Sheets 
+
+The [`R` Reference Card](http://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
