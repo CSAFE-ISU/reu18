@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Visualization with ggplot2</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Haley Jeppson, Sam Tyner" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="csafe.css" type="text/css" />
+    <link rel="stylesheet" href="csafe-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data Visualization with <code>ggplot2</code>
+### Haley Jeppson, Sam Tyner
+
+---
+
+
+
+
+
+
+class: inverse
+# Motivation
+
+---
+class: primary
+# Why visualize?
+
+- The sole purpose of visualization is communication
+
+
+- Visualization offers an alternative way of communicating numbers
+
+![](img/Minard.png)
+
+---
+class: primary
+# Tables vs. Charts
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Sepal.Length &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sepal.Width &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Petal.Length &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Petal.Width &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: primary
+# Tables vs. Charts
+
+![](img/table-modified.png)
+
+---
+class: primary
+# Tables vs. Charts
+
+&lt;img src="04-r-graphics-why_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+Visualizations can aid communication and make the data easier to perceive
+
+
+---
+class: inverse
+# Types of graphs
+
+---
+class: primary
+# Beginner
+
+
+.pull-left[
+**One Variable**
+- Discrete
+  - Bar Chart
+  - Pie Chart
+  
+- Continuous
+  - Stem and Leaf Plots
+  - Histograms
+  
+]
+
+.pull-right[
+**Two variables**
+- Continuous X, Continuous Y
+  - Scatterplots
+  
+- Maps
+]
+
+&lt;br/&gt;
+
+
+![](04-r-graphics-why_files/figure-html/beg-1.png)&lt;!-- --&gt;
+
+
+---
+class: primary
+# Intermediate
+
+- Parallel Coordinate Plots
+- Mosaic Plots
+- Radar Charts
+- Heat Maps
+
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+
+
+![](04-r-graphics-why_files/figure-html/int-1.png)&lt;!-- --&gt;
+
+
+
+---
+class: primary
+# Advanced
+
+- Density Plots
+- Violin Plots
+- Social Network Plots
+
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+
+![](04-r-graphics-why_files/figure-html/adv-1.png)&lt;!-- --&gt;
+
+  
+---
+class: inverse
+# Grammar of Graphics
+
+---
+class: primary
+# Grammar of Graphics
+
+What is the grammar of graphics?
+
+- Developed by Leland Wilkinson, is a set of grammatical rules for creating perceivable graphs
+
+- Rather than thinking about a limited set of graphs, think about graphical forms
+
+- Charts are instances of much more general objects
+  
+- An abstraction which makes thinking, reasoning, and communicating graphics easier
+
+![](img/grammar.png)
+???
+
+
+We often talk about types of graphs – bar plots, pie charts, scatterplots – as though they are unrelated, but most graphs share many aspects of their structure. 
+
+We can think of graphs as visual representations of (possibly transformed) data, along with labels (like axes and legends) that make the meaning clear.
+
+Much like the grammar of a language allows you to combine words into meaningful sentences, a grammar of graphics provides a structure to combine graphical elements into figures that display data in a meaningful way. 
+
+The grammar of graphics was developed in order to produce a flexible system that can create a rich variety of charts as simply as possible, without duplication of methods.
+
+A grammar provides a strong foundation for understanding a diverse range of graphics. A grammar may also help guide us on what a well-formed or correct graphic looks like, but there will still be many grammatically correct but nonsensical graphics
+
+---
+class: primary
+# Grammar of Graphics
+
+Different types of graphs may appear completely distinct, but in actuality share many common elements.
+
+By making different visual choices, you can use graphs to highlight different aspects of the same data. 
+
+For example, here are three ways of displaying the same data:
+
+
+&lt;img src="04-r-graphics-why_files/figure-html/plots-3-1.png"  /&gt;
+
+
+???
+add in description of how they are different
+
+
+Different types of graphs may, at first glance, appear completely distinct. But in fact, graphs share many common elements, such as coordinate systems and using geometric shapes to represent data. 
+
+By making different visual choices (Cartesian or polar coordinates, points or lines or bars to represent data), you can use graphs to highlight different aspects of the same data. For example, here are three ways of displaying the same data:
+
+---
+class: primary
+# Grammar of Graphics
+
+Statistical graphic specifications are expressed in six statements:
+
+1) **DATA**: a set of data operations that create variables from datasets  
+
+2) **TRANS**: variable transformations  
+
+3) **SCALE**: scale transformations  
+
+4) **COORD**: a coordinate system  
+
+5) **ELEMENT**: graphs (points) and their aesthetic attributes (color)  
+
+6) **GUIDE**: one or more guides (axes, legends, etc.)  
+
+
+
+???
+The internal processes that constitute the syntax of the grammar of graphics
+&lt;br/&gt;
+&lt;br/&gt;
+
+![](img/grammar.png)
+
+
+a data flow diagram that shoes what the stages are, how they must be ordered, and waht data are required along the way
+
+provides us the ingredients and the dependencies among them, but it does not tell us how to assemble the ingredients
+
+The Recipe:
+
+1. Create variables – extract data into variables  
+2. apply algebra – 
+3. apply scales – ex. categorical
+4. compute statistics
+5. construct geometry
+6. apply coordinates - ex. for polar: send (x,y) to (r, theta)
+- by postponing the coordinnates operation as late in the pipeline as possible, we have made the system more flexible
+7. compute aesthetics
+- aesthetic functions translate a graph into a graphic, which is a set of drawing instructions for a renderer
+ex. position, color, label
+
+
+
+---
+class: primary
+# Limitations to the Grammar
+
+- tells us what words make up our graphical “sentences,” but offers no advice on how to write well
+
+- is not about good taste, practice, or graphic design
+
+- while very useful, the grammar is not all encompassing
+
+- does not include interactive graphics
+
+- does not include a few interesting and useful charts
+
+
+---
+class: inverse
+# `ggplot2`: A layered grammar of graphics
+
+---
+class: primary
+# `ggplot2`
+
+A layered grammar vs The Grammar of Graphics
+
+ggplot2 is based on The Grammar of Graphics
+
+
+![](img/layered-grammar.png)
+
+In both grammars, the components are independent, meaning that we can generally change a single component in isolation
+
+---
+class: primary
+# What is a graphic?
+
+ggplot2 uses the idea that you can build every graph with graphical components from three sources
+
+  1. the **data** , represented by **geoms** 
+  
+  2. the **scales** and **coordinate system**
+  
+  3. the **plot annotations**
+  
+- to display values, map variables in the data to visual properties of the geom (**aesthetics**) like **size**, **color**, and **x** and **y** locations
+
+
+
+![](img/build1.png)![](img/build2.png)
+
+---
+class: primary
+# `ggplot2`: A layered grammar
+
+.small[
+The layered grammar defines the components of a plot as:
+
+1. a default dataset and set of mappings from variables to aesthetics 
+
+2. one or more layers, each layer having one geometric object, one statistical transformation, one position adjustment, and optionally, one dataset and set of aesthetic mappings  
+
+3. one scale for each aesthetic mapping used  
+
+4. a coordinate system 
+
+5. the facet specification 
+.pull-right[
+![](img/l.png)
+
+]
+]
+???
+
+---
+class: primary
+# What is a Layer?
+
+
+- it determines the physical representation of the data
+  
+- a plot may have multiple layers
+  - usually all the layers on a plot have something in common, i.e. different views of the same data
+    
+- a layer is composed of four parts:
+    1. data and aesthetic mapping
+    2.  a statistical transformation (stat)
+    3. a geometric object (geom)
+    4. a position adjustment
+
+
+???
+
+
+---
+class: primary
+# `ggplot2`: Layered grammar
+
+&lt;img src="04-r-graphics-why_files/figure-html/plots-4-1.png"  /&gt;
+
+
+&lt;style&gt;
+.column-left{
+  float: left;
+  width: 32%;
+  text-align: left;
+}
+.column-center{
+  display: inline-block;
+  width: 34%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 32%;
+  text-align: left;
+}
+&lt;/style&gt;
+
+&lt;div class="column-left"&gt;
+
+data: diamonds  &lt;/br&gt;
+layer:  &lt;/br&gt;
+  mapping: x = cut, y = count, fill = cut  &lt;/br&gt;  
+  geom: bar    &lt;/br&gt;
+coordinates: Cartesian
+
+&lt;/div&gt;
+&lt;div class="column-center"&gt;
+
+data: diamonds  &lt;/br&gt;
+layer:  &lt;/br&gt;
+  - mapping: x = 1, y = count, fill = cut  &lt;/br&gt;
+  - geom: fill-bar  &lt;/br&gt;
+coordinates: Cartesian  &lt;/br&gt;
+
+&lt;/div&gt;
+&lt;div class="column-right"&gt;
+
+data: diamonds  &lt;/br&gt;
+layer:  &lt;/br&gt;
+  - mapping: x = 1, y = count, fill = cut  &lt;/br&gt;
+  - geom: fill-bar  &lt;/br&gt;
+coordinates: Polar  &lt;/br&gt;
+&lt;/div&gt;
+
+
+---
+class: inverse
+# Make your first figure
+
+---
+class: primary
+# We begin with the data
+
+
+
+
+
+
+
+
+```r
+ggplot(data = diamonds)
+```
+
+![](04-r-graphics-why_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+---
+class: primary
+# Specify the `aes` mappings
+
+
+```r
+ggplot(data = diamonds, aes(x = carat, y = price))
+```
+
+![](04-r-graphics-why_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+???
+or what relationships we want to see
+
+---
+class: primary
+# Choose a geom
+
+
+```r
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point()
+```
+
+![](04-r-graphics-why_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+class: primary
+# And add `aes`
+
+
+```r
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut))
+```
+
+![](04-r-graphics-why_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+---
+class: primary
+# And another layer...
+
+
+```r
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut)) +
+   geom_smooth()
+```
+
+![](04-r-graphics-why_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+
+---
+class: primary
+# Mapping vs setting `aes`
+
+
+```r
+ggplot(data = diamonds, aes(x = carat, y = price) +
+    geom_point(aes(colour = cut), size = 2, alpha = .5) +
+    geom_smooth((aes(fill = cut), colour = "lightgrey")) 
+```
+
+![](04-r-graphics-why_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+
+---
+class: primary
+# Coord. transformations
+
+
+```r
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut), size = 2, alpha = .5) +
+    geom_smooth(aes(fill = cut)) +
+    scale_y_log10()
+```
+
+![](04-r-graphics-why_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+
+---
+class: primary
+# As can facet variables
+
+
+```r
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+    geom_point(aes(colour = cut), size = 2, alpha = .5) +
+    geom_smooth() +
+    scale_y_log10() +
+    facet_wrap(~cut)
+```
+
+![](04-r-graphics-why_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
