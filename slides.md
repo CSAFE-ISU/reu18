@@ -15,6 +15,7 @@ New slide sets will be made available as they are created.
 - Functions in R: [here](static/slides/rstats/02-r-functions.html)
 - Reading files in R: [here](static/slides/rstats/03-r-files.html)
 - Motivation for [`ggplot2`](http://ggplot2.tidyverse.org/): [here](static/slides/rstats/04-r-graphics-why.html)
+- `ggplot2` Basics: [here](static/slides/rstats/05-r-ggplot2-basics.html)
 
 ## Learning Statistics 
 
