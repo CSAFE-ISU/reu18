@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Building plots with ggplot2</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Haley Jeppson and Sam Tyner" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="csafe.css" type="text/css" />
+    <link rel="stylesheet" href="csafe-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Building plots with <code>ggplot2</code>
+### Haley Jeppson and Sam Tyner
+
+---
+
+
+
+
+
+
+class: inverse
+# Underlying theory
+
+---
+class: primary
+# What is a graphic?
+
+`ggplot2` uses the idea that you can build every graph from the same components:
+
+  1. a **data** set
+  
+  2. a **coordinate system**
+  
+  3. **geoms** - visual marks that represent data
+  
+- to display values, map variables in the data to visual properties of the graph, like **size**, **color**, and **x** and **y** locations
+
+![](img/build1.png)![](img/build2.png)
+
+---
+class: primary
+# How to build a graph
+
+Complete the template below to build a graph
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-2-1.png"  /&gt;
+
+---
+class: primary
+# How to build a graph
+
+`ggplot(data = mpg, aes(x = cty, y = hwy))`
+
+- This will begin a plot that you can finish by adding layers to.
+
+- You can add one geom per layer
+
+
+&lt;img src="05-r-ggplot2-basics_files/figure-html/plots-4-1.png"  /&gt;
+
+
+---
+class: primary
+# Your Turn 5.1
+
+Change the code below to have the points **on top** of the boxplots.
+
+
+```r
+ggplot(data = mpg, aes(x = class, y = hwy)) + 
+  geom_jitter() + 
+  geom_boxplot()
+```
+
+![](05-r-ggplot2-basics_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+class: primary
+# What is a `geom`?
+
+In `ggplot2`, we use a geom function to represent data points, and use the geom's aesthetic properties to represent variables.
+
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-5-1.png"  /&gt;
+
+
+
+Once our data is formatted and we know what type of variables we are working with, we can select the correct geom for our visualization. 
+
+---
+class: primary
+# Available geoms 
+
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# What is a layer?
+
+- it determines the physical representation of the data
+
+- Together, the data, mappings, statistical transformation, and geometric object form a layer
+
+- A plot may have multiple layers
+ 
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-8-1.png"  /&gt;
+
+
+---
+class: primary
+# Alternatively...
+
+A stat builds a new variable to plot (e.g., count and proportion)
+.pull-left[
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-10-1.png"  /&gt;
+]
+.pull-right[
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-11-1.png"  /&gt;
+]
+
+
+---
+class: primary
+# Faceting
+
+A way to extract subsets of data and place them side-by-side in graphics
+
+
+```r
+ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point()
+
+ggplot(data = mpg, aes(x = cty, y = hwy, colour = class)) + geom_point() +facet_grid(.~class)
+```
+
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Faceting Options
+
+- `facet_grid(. ~ b)`:facet into columns based on b 
+- `facet_grid(a ~ .)`:facet into columns based on a 
+- `facet_grid(a ~ b)`:facet into both rows and columns
+- `facet_wrap( ~ fl)`:wrap facets into a rectangular layout
+
+You can set scales to let axis limits vary across facets:
+
+- `facet_grid(y ~ x, scales = "free")`: x and y axis limits adjust to individual facets
+- "free_x" - x axis limits adjust
+- "free_y" - y axis limits adjust
+
+You can also set a labeller to adjust facet labels:
+- `facet_grid(. ~ fl, labeller = label_both)`
+- `facet_grid(. ~ fl, labeller = label_bquote(alpha ^ .(x)))`
+- `facet_grid(. ~ fl, labeller = label_parsed)`
+
+
+---
+class: primary
+# Position
+
+Position adjustments determine how to arrange geoms that would otherwise occupy the same space
+- **Dodge**: Arrange elements side by side 
+- **Fill**: Stack elements on top of one another, normalize height
+- **Stack**: Stack elements on top of one another
+
+`ggplot(mpg, aes(fl, fill = drv)) + geom_bar(position = "")`
+
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Jitter
+
+- **Jitter**: Add random noise to X &amp; Y position of each element to avoid overplotting
+- There is also a jitter geom 
+
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Coordinates
+
+- `coord_cartesian()`: The default cartesian coordinate system
+- `coord_fixed()`: Cartesian with fixed aspect ratio between x &amp; y units
+- `coord_flip()`: Flipped Cartesian coordinates
+- `coord_polar()`: Polar coordinates
+- `coord_trans()`: Transformed cartesian coordinates.
+- `coord_map()`: Map projections from the mapproj package (mercator (default), azequalarea, lagrange, etc.)
+
+
+
+&lt;img src="05-r-ggplot2-basics_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# ggplot2 extenstions
+
+[gallery](http://www.ggplot2-exts.org/gallery/)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
