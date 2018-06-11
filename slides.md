@@ -19,6 +19,7 @@ New slide sets will be made available as they are created.
 - `ggplot2` Basics: [here](static/slides/rstats/05-r-ggplot2-basics.html)
 - Advanced `ggplot2`: [here](static/slides/rstats/06-r-advanced-ggplot2.html)
 - RMarkdown Introduction: [here](static/slides/rstats/07-r-markdown.html)
+- `dplyr` Basics: [here](static/slides/rstats/08-r-data-dplyr.html)
 
 ## Learning Statistics 
 
