@@ -24,3 +24,4 @@ New slide sets will be made available as they are created.
 ## Learning Statistics 
 
 - Introduction to Data: [here](static/slides/statistics/intro-data.html)
+- Introduction to Probability: [here](static/slides/statistics/probability.html)
