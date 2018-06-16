@@ -9,7 +9,7 @@ css: "/css/index.css"
 Date Assigned | What | Date Due | Solution (if applicable)  
 :-------------|------|:-------- | ---:
 6/5/18        | Ch. 1 problems 2, 4, 11, 14, 16, 20, 22, 26, 30, 32, 34, 40, 44, 52, 54, 66, 70a-c. Do all parts unless otherwise stated | 6/8/2018 @ 4:00pm | [Solution](static/homework/soln-assn-1.html)
-6/14/18    | Ch. 2 problems 8a, 8c-f, 14, 16, 18, 22, 26, 34, 38. Do all parts unless otherwise stated. Use a .Rmd to write the homework. | 
+6/14/18    | Ch. 2 problems 8a, 8c-f, 14, 16, 18, 22, 26, 34, 38. Do all parts unless otherwise stated. Use a .Rmd to write the homework. | 6/18/2018 @ 4:00pm
 
 
 
