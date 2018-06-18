@@ -26,3 +26,4 @@ New slide sets will be made available as they are created.
 
 - Introduction to Data: [here](static/slides/statistics/intro-data.html)
 - Introduction to Probability: [here](static/slides/statistics/probability.html)
+- Distributions of Random Variables: [here](static/slides/statistics/dists-rand-vars.html)
