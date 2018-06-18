@@ -133,6 +133,86 @@ class: primary
 
 ---
 class: primary
+# Probabilities 
+
+Consider the standard normal, `\(Z\)`. What is the probability that a random observation is less than 0? 
+
+&lt;img src="dists-rand-vars_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+--
+
+Using `R`: 
+
+
+```r
+pnorm(0,mean=0, sd=1)
+```
+
+```
+## [1] 0.5
+```
+
+---
+class: primary
+# Probabilities 
+
+Consider the standard normal, `\(Z\)`. What is the probability that a random observation is greater than 2? 
+
+&lt;img src="dists-rand-vars_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+--
+
+Using `R`: 
+
+
+```r
+1- pnorm(2,mean=0, sd=1)
+```
+
+```
+## [1] 0.02275013
+```
+
+Look at `?pnorm` in `R`. 
+
+---
+class: primary
+# Percentiles 
+
+What value is the `\(90^{th}\)` percentile of the standard normal distribution? 
+
+`?qnorm`
+
+
+```r
+qnorm(.90, mean = 0, sd  =1)
+```
+
+```
+## [1] 1.281552
+```
+
+So, the value of 1.281552 is greater than 90% of all observations of a standard normal. 
+
+---
+class: primary
+# Percentiles 
+
+What value is the `\(25^{th}\)` percentile of the standard normal distribution? 
+
+
+```r
+qnorm(.25, mean = 0, sd  =1)
+```
+
+```
+## [1] -0.6744898
+```
+
+So, the value of 0.6744898 is greater than 25% of all observations of a standard normal (and less than 75% of all observations)
+
+---
+class: primary
 # Your Turn 3.1.1
 
 The Graduate Record Examination (GRE) is mandatory for many graduate school applications, similar to the ACT/SAT for college applications. A student scored 160 on the Verbal Reasoning (VR) section and 157 on the Quantitative Reasoning (QR) section. The mean score for VR section for all test takers was 151 with a standard deviation of 7, and the mean score for the QR was 153 with a standard deviation of 7.67. Suppose that both distributions are nearly normal.
@@ -190,6 +270,42 @@ Below are final exam scores of 20 Introductory Statistics students:
 2. Do these data appear to follow a normal distribution? Explain your reasoning using the graphs provided below. .red[With the exception of a low outlier (57), the histogram is unimodal and symmetric and the points approximately follow the line in the QQ plot. So the data are approximately normal.]
 ]
 
+---
+class: primary
+# Your Turn 3.1.3
+
+The average daily high temperature in June in LA is 77 degrees Farenheit with a standard deviation of 5 degrees Farenheit.  Suppose the temperature follows a normal distribution.
+
+a. What is the probability of observing an 83 degree temperature or higher in LA during a randomly chosen day in June?
+b. How cool are the coldest 10% of the days (days with lowest average high temperature) during June in LA?
+
+---
+class: primary
+# YT 3.1.3 (soln.)
+
+The average daily high temperature in June in LA is 77 degrees Farenheit with a standard deviation of 5 degrees Farenheit.  Suppose the temperature follows a normal distribution.
+
+a. What is the probability of observing an 83 degree temperature or higher in LA during a randomly chosen day in June?
+
+
+```r
+1-pnorm(83, mean = 77, sd = 5)
+```
+
+```
+## [1] 0.1150697
+```
+
+b. How cool are the coldest 10% of the days (days with lowest average high temperature) during June in LA?
+
+
+```r
+qnorm(0.10, mean = 77, sd = 5)
+```
+
+```
+## [1] 70.59224
+```
 
 ---
 class: inverse
