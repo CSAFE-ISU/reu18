@@ -19,7 +19,8 @@ New slide sets will be made available as they are created.
 - `ggplot2` Basics: [here](static/slides/rstats/05-r-ggplot2-basics.html)
 - Advanced `ggplot2`: [here](static/slides/rstats/06-r-advanced-ggplot2.html)
 - RMarkdown Introduction: [here](static/slides/rstats/07-r-markdown.html)
-- `dplyr` Basics: [here](static/slides/rstats/08-r-data-dplyr.html)
+- [`dplyr`](https://dplyr.tidyverse.org/) Basics: [here](static/slides/rstats/08-r-data-dplyr.html)
+- Tidying data with [`tidyr`](http://tidyr.tidyverse.org/) and [`lubridate`](https://lubridate.tidyverse.org/): [here](static/slides/rstats/09-r-tidy-data.html)
 
 ## Learning Statistics 
 
