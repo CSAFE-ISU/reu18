@@ -534,7 +534,7 @@ $(document).ready(function () {
 <th align="left"><span class="math inline">\(X\)</span></th>
 <th align="center">0</th>
 <th align="center">25</th>
-<th align="center">35</th>
+<th align="center">60</th>
 </tr>
 </thead>
 <tbody>
@@ -546,9 +546,9 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>The average revenue is <span class="math inline">\(E[X] = 0\cdot 0.54 + 25 \cdot 0.34 + 35 \cdot 0.12 = 12.7\)</span>. Here’s the standard deviation, computed using <code>R</code>.</p>
+<p>The average revenue is <span class="math inline">\(E[X] = 0\cdot 0.54 + 25 \cdot 0.34 + 60 \cdot 0.12 = 15.7\)</span>. Here’s the standard deviation, computed using <code>R</code>.</p>
 <pre class="r"><code># values of X
-X &lt;- c(0,25,35)
+X &lt;- c(0,25,60)
 # corresponding probabilities
 pr &lt;- c(.54, .34, .12)
 # expected value
@@ -558,9 +558,9 @@ Var &lt;- sum((X - EX)^2 * pr)
 # standard deviation
 StdDev &lt;- sqrt(Var)
 StdDev</code></pre>
-<pre><code>## [1] 14.07871</code></pre>
+<pre><code>## [1] 19.95019</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>For 120 passengers, the expected revenue is <span class="math inline">\(120 \times 12.7 = 1524\)</span>, with standard deviation <span class="math inline">\(120 \times 14.08 = 1689.6\)</span>. We assumed implicitly that all the 120 passengers are independent from each other and have the same expected behavior.</li>
+<li>For 120 passengers, the expected revenue is <span class="math inline">\(120 \times 15.7 = 1884\)</span>, with standard deviation <span class="math inline">\(120 \times 19.95 = 2394\)</span>. We assumed implicitly that all the 120 passengers are independent from each other and have the same expected behavior.</li>
 </ol>
 </div>
 </div>
