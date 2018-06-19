@@ -18,6 +18,8 @@ css: "/css/index.css"
     <a href="/reu18/week8" class="list-filter">July 30 - August 3, 2018</a>
 </div>
 
+Student Blog Posts from their time at the All-Hands Meeting will be posted here. 
+
 <div class="posts-list">
   {% for post in site.tags.week1 %}
   <article>

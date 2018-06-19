@@ -18,6 +18,10 @@ css: "/css/index.css"
     <a href="/reu18/week8" class="list-filter">July 30 - August 3, 2018</a>
 </div>
 
+No posts this week. Welcome to ISU! 
+
+![Welcome to ISU!](https://www.universityservices.iastate.edu/sites/default/files/styles/wdslideshow_image_medium/public/uploads/slideshow/20150902isuwallnight2b.jpg?itok=EcG7VEff)
+
 <div class="posts-list">
   {% for post in site.tags.week1 %}
   <article>
