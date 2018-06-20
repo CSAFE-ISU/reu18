@@ -1,7 +1,7 @@
 ---
 title: "CSAFE Poster Session Report"
 subtitle: "Carley McConnell"
-date: "June 13th, 2018"
+date: "2018-06-13 17:00:00 CDT"
 topic: "week2"
 layout: post
 root: ../../../

@@ -15,7 +15,7 @@ css: "/css/index.css"
   <a href="/reu18/week6" class="list-filter">July 9-15, 2018</a>
   <a href="/reu18/week7" class="list-filter filter-selected">July 16-22, 2018</a>
   <a href="/reu18/week8" class="list-filter">July 23-30, 2018</a>
-    <a href="/reu18/week8" class="list-filter">July 30 - August 3, 2018</a>
+    <a href="/reu18/week9" class="list-filter">July 30 - August 3, 2018</a>
 </div>
 
 <div class="posts-list">
