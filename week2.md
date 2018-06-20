@@ -21,7 +21,7 @@ css: "/css/index.css"
 Student Blog Posts from their time at the All-Hands Meeting will be posted here. 
 
 <div class="posts-list">
-  {% for post in site.tags.week1 %}
+  {% for post in site.tags.week2 %}
   <article>
     <a class="post-preview" href="{{ post.url | prepend: site.baseurl }}">
 	    <h2 class="post-title">{{ post.title }}</h2>

@@ -19,7 +19,7 @@ css: "/css/index.css"
 </div>
 
 <div class="posts-list">
-  {% for post in site.tags.week1 %}
+  {% for post in site.tags.week8 %}
   <article>
     <a class="post-preview" href="{{ post.url | prepend: site.baseurl }}">
 	    <h2 class="post-title">{{ post.title }}</h2>
