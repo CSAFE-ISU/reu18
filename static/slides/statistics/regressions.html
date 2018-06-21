@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Part 4: Regression</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Sam Tyner" />
+    <meta name="date" content="2018-06-21" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="csafe.css" type="text/css" />
+    <link rel="stylesheet" href="csafe-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Part 4: Regression
+### Sam Tyner
+### 2018-06-21
+
+---
+
+
+
+
+
+
+class:primary
+# Textbook
+
+These slides are based on the book *OpenIntro Statistics* by David Diez, Christopher Barr, and Mine Çetinkaya-Rundel
+
+The book can be downloaded from [https://www.openintro.org/stat/textbook.php](https://www.openintro.org/stat/textbook.php)
+
+Part 4 Corresponds to Chapters 7, 8 of the text. Sections 4.1-4.3 correspond to chapters 7, 8.1, 8.4 of the text.
+
+---
+class: primary
+# Outline 
+
+- Simple Linear Regression (4.1)
+- Multiple Regression (4.2)
+- Logistic Regression (4.3)
+
+---
+class: inverse, center
+# Section 4.1: Simple Linear Regression
+
+---
+class: primary
+# What is regression? 
+
+![](img/xkcdlinreg.png)
+
+---
+class: primary
+# Formula for a line
+
+`$$Y = a\cdot X + b$$`
+
+- `\(Y\)`: dependent variable (response)
+- `\(X\)`: independent variable (predictor)
+- `\(a\)`: slope (for every 1 unit increase in `\(X\)`, `\(Y\)` increases by `\(a\)`)
+- `\(b\)`: intercept (when `\(X=0\)`, `\(Y = b\)`)
+- *Deterministic*: knowledge of `\(a, X, b\)` means you know `\(Y\)` 
+
+---
+class: primary
+# Linear Regression
+
+Why? 
+
+- Have two variables, `\(Y, X\)` and we think that the value of `\(Y\)` *depends on* the value of `\(X\)` 
+- Why would we think that? Maybe we have previous knowledge or we looked at a scatterplot of the data 
+
+&lt;img src="regressions_files/figure-html/scatter-1.png" width=".6\linewidth" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Linear Regression
+
+![](regressions_files/figure-html/scatter-1)
+
+Guesstimate the slope and intercept of a line through this data
+
+- `\(a\)`: slope = ?
+- `\(b\)`: intercept = ? 
+
+---
+class: primary
+# Linear Regression
+
+![](regressions_files/figure-html/scatter-1)
+
+Guesstimate the slope and intercept of a line through this data
+
+- `\(a\)`: slope `\(\approx\)` .red[0.08]
+- `\(b\)`: intercept `\(\approx\)` .red[11.48]
+
+---
+class: primary
+# Best fit line
+
+The *best fit line* is the equation `\(Y = a\cdot X +b\)` with values `\(a,b\)` that minimize the **sum of squared residuals**. What does that mean? 
+
+- Write the best fit line as `\(\hat{Y} = \beta_0 + \beta_1 \cdot X\)`. 
+
+--
+
+- `\(\hat{Y}\)` is the predicted value of `\(Y\)` by the best fit line
+
+--
+
+- **Residual** - what is "left over" after the prediction. 
+
+--
+
+- Denote residual for observation `\(i\)` by `\(e_i = Y_i - \hat{Y}_i\)`
+
+--
+
+- We are minimizing `\(\sum_{i= 1}^N e_i^2\)`
+
+---
+class: primary
+# Calculating the best fit line 
+
+- `\(\beta_1 = \frac{s_y}{s_x}\cdot r\)`
+- `\(s_y\)`: standard deviation of the data observations `\(Y\)`
+- `\(s_x\)`: standard deviation of the data observations `\(X\)` 
+- `\(r\)`: correlation between the observations `\(X, Y\)` (measure of association between `\(X,Y\)`)
+- `\(\beta_0 = \bar{y} - \beta_1\cdot \bar{x}\)` 
+
+---
+class: primary
+# Do it in `R` 
+
+
+```r
+bfl &lt;- lm(data = glass, log(Na23) ~ log(Li7))
+coef(bfl)
+```
+
+```
+## (Intercept)    log(Li7) 
+## 11.48732735  0.07632503
+```
+&lt;img src="regressions_files/figure-html/plotlm-1.png" width=".6\linewidth" style="display: block; margin: auto;" /&gt;
+
+---
+class: primary
+# Residual Plot 
+
+Look at the residuals `\(e\)` by the values of `\(X\)`: 
+
+&lt;img src="regressions_files/figure-html/resid-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+Want to see a random scatter of points above and below 0 and the values to look approximately normally distributed.
+
+---
+class: primary
+# `\(R^2\)`: how well does `\(X\)` explain `\(Y\)`?
+
+`\(R^2\)`, the **coefficient of determination** defines how much of the variability in `\(Y\)` is explainable by the values of `\(X\)`. 
+
+`$$R^2 = 1 - \frac{Var(e)}{Var(y)}$$`
+
+Example: 
+
+- `\(Y = \log(Na23)\)`. `\(Var(Y) = 0.00089\)` 
+- `\(e_i = Y_i-\hat{Y}_i = Y_i - (11.487 +  0.0763\cdot X_i )\)`. `\(Var(e) = 0.00019\)`
+- `\(\frac{Var(e)}{Var(y)} = \frac{0.00019}{0.00089} = 0.2138\)`
+- `\(R^2 = 1 - \frac{Var(e)}{Var(y)}  = 1- 0.2138 = 0.7862\)`
+
+78.62% of the variability in `\(Y\)` is explained by the value of `\(X\)`. 
+---
+class: primary
+# Your Turn 4.1.1
+
+Suppose we fit a regression line to predict the shelf life of an apple based on its weight. For a particular apple, we predict the shelf life to be 4.6 days. The apple’s residual is -0.6 days. Did we over or under estimate the shelf-life of the apple? Explain your reasoning.
+
+---
+class: primary
+# YT 4.1.1 (soln.)
+
+Over-estimate, because the residual is calculated as observed minus predicted
+
+---
+class: primary
+# Your Turn 4.1.2
+
+1. Install the `R` package `openintro`.
+2. Using `R`, fit a linear model to the `murders` dataset, with murder rate as the dependent variable and percent in poverty as the explanatory variable. Then...
+3. Write out the linear model. 
+4. Interpret the intercept.
+5. Interpret the slope.
+6. Interpret R2. (Hint: `summary(my_lm)`)
+
+
+```r
+install.pacakges("openintro")
+library(openintro)
+my_data &lt;-openintro::murders
+# here is some code to get you started (fill in the blanks): 
+my_lm &lt;- lm(___ ~ ___, data = my_data)
+```
+
+---
+class: primary
+# YT 4.1.2 (soln.)
+
+.small[
+
+
+```r
+# 1. install.packages("openintro")
+# 2.
+my_data &lt;-openintro::murders
+my_lm &lt;- lm(annual_murders_per_mil ~ perc_pov, data = my_data)
+summary(my_lm)
+```
+
+```
+## 
+## Call:
+## lm(formula = annual_murders_per_mil ~ perc_pov, data = my_data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.1663 -2.5613 -0.9552  2.8887 12.3475 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -29.901      7.789  -3.839   0.0012 ** 
+## perc_pov       2.559      0.390   6.562 3.64e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.512 on 18 degrees of freedom
+## Multiple R-squared:  0.7052,	Adjusted R-squared:  0.6889 
+## F-statistic: 43.06 on 1 and 18 DF,  p-value: 3.638e-06
+```
+
+The model: `\(Y = -29.90 + 2.56 \cdot X\)` where `\(Y\)` is the annual murder rate per million people, and `\(X\)` is the percent of people living in poverty. 
+
+Interpret intercept: When a city has 0 people living in poverty, annual the murder rate is -29.9 per million. This is totally non-sensical.
+
+Interpret slope: for each additional percent of people living in poverty, the murder rate goes up by 2.56 per million. 
+
+Interpret R^2: The `\(R^2\)` value is 0.7052. So, 70.52% of the variation in murder rate can be explained by the variation in poverty rate. Note: CORRELATION `\(\neq\)` CAUSATION
+]
+
+---
+class: inverse, center
+# Section 4.2: Multiple Regression
+
+---
+class: primary
+# Multiple Predictors
+
+Multiple regression is the same general idea as simple linear regression, but instead of one predictor variable, `\(X\)`, we have two or more: `\(X_1, X_2, \dots, X_p\)` where `\(p\)` is the number of predictor variables. 
+
+`$$\hat{Y} = \beta_0 + \beta_1\cdot X_1 +  \beta_2\cdot X_2 + \cdots +  \beta_p\cdot X_p$$`
+
+`\(\beta_0\)` (intercept) and `\(\beta_1, \dots, \beta_p\)` are called *coefficients* 
+
+- `\(\beta_0\)` is the value of `\(\hat{Y}\)` when ALL `\(X\)`s are 0
+- `\(\beta_k, k \in \{1,2,\dots, p\}\)` is the amount that `\(Y\)` increases when `\(X_k\)` increases by 1 unit, and *all other `\(X\)` values are held constant*
+
+Why? 
+
+---
+class: primary
+# Why MR? 
+
+- May know that more than 1 variable affects the value of `\(Y\)` (background knowledge)
+- More predictors generally means better fit, better predictions
+
+Example: Add log value of Neodymium (common glass additive) to the model
+
+
+```r
+blfm2 &lt;- lm(log(Na23) ~ log(Li7) + log(Nd146), data = glass)
+blfm2
+```
+
+```
+## 
+## Call:
+## lm(formula = log(Na23) ~ log(Li7) + log(Nd146), data = glass)
+## 
+## Coefficients:
+## (Intercept)     log(Li7)   log(Nd146)  
+##    11.53947      0.05774     -0.03699
+```
+
+
+---
+class: primary
+# MR Example
+
+Example: `\(\log(Na23) = \beta_0 + \beta_1 \cdot \log(Li7) + \beta_2 \cdot \log(Nd146)\)`
+
+Residuals: 
+
+&lt;img src="regressions_files/figure-html/multreg2-1.png" height=".6\textwidth" style="display: block; margin: auto;" /&gt;
+
+`\(R^2 = 1 - \frac{Var(e)}{Var(y)} = 1 - \frac{0.000155}{0.00089} = 0.8258\)`
+
+What do you think of this model? 
+
+---
+class: primary
+# MR Example
+
+Example: `\(\log(Na23) = \beta_0 + \beta_1 \cdot \log(Li7) + \beta_2 \cdot \log(Nd146)\)`
+
+Residuals: 
+
+&lt;img src="regressions_files/figure-html/multreg2resi-1.png" height=".6\textwidth" style="display: block; margin: auto;" /&gt;
+
+`\(R^2 = 1 - \frac{Var(e)}{Var(y)} = 1 - \frac{0.000155}{0.00089} = 0.8258\)`
+
+.red[Better fit than the simple linear regression, but we uncovered a new pattern: two distinct groups of residuals]
+
+---
+class: primary
+# Another MR
+
+.small[There are 2 manufacturers in the glass data, so we'll add the manufacturer as a variable in the model: 
+
+`$$\hat{Y}  = \beta_0 + \beta_1 \cdot X_1 +  \beta_2 \cdot X_2 +  \beta_3 \cdot X_3$$`
+
+- `\(Y = \log(Na23)\)`, `\(X_1 = \log(Li7)\)`, `\(X_2 = \log(Nd146)\)`, `\(X_3 = \text{manufacturer}\)`. 
+
+
+```r
+blfm3 &lt;- lm(log(Na23) ~ log(Li7) + log(Nd146) + mfr , 
+            data = glass)
+summary(blfm3)$r.squared
+```
+
+```
+## [1] 0.8267217
+```
+&lt;img src="regressions_files/figure-html/multreg3resid-1.png" height=".6\textwidth" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: primary
+# Your Turn 4.2.1 
+
+The `openintro` package contains the data `babies`.
+
+In `R` fit a multiple regression with birthweight (`bwt`) as the dependent variable and all other variables (except `case`) as explanatory variables. 
+
+Save the model as `babies_model` and print off a summary of `babies_model`. 
+
+---
+class: primary
+# YT 4.2.1 (soln.) 
+
+.small[
+The `openintro` package contains the data `babies`.
+
+In `R` fit a multiple regression with birthweight (`bwt`) as the dependent variable and all other variables (except `case`) as explanatory variables. 
+
+Save the model as `babies_model` and print off a summary of `babies_model`. 
+
+
+```r
+babies_model &lt;- lm(bwt ~ ., data = openintro::babies[,-1])
+summary(babies_model)
+```
+
+```
+## 
+## Call:
+## lm(formula = bwt ~ ., data = openintro::babies[, -1])
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -57.613 -10.189  -0.135   9.683  51.713 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -80.41085   14.34657  -5.605 2.60e-08 ***
+## gestation     0.44398    0.02910  15.258  &lt; 2e-16 ***
+## parity       -3.32720    1.12895  -2.947  0.00327 ** 
+## age          -0.00895    0.08582  -0.104  0.91696    
+## height        1.15402    0.20502   5.629 2.27e-08 ***
+## weight        0.05017    0.02524   1.987  0.04711 *  
+## smoke        -8.40073    0.95382  -8.807  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 15.83 on 1167 degrees of freedom
+##   (62 observations deleted due to missingness)
+## Multiple R-squared:  0.258,	Adjusted R-squared:  0.2541 
+## F-statistic: 67.61 on 6 and 1167 DF,  p-value: &lt; 2.2e-16
+```
+]
+
+---
+class: primary
+# Your Turn 4.2.2
+
+Using the `babies_model`
+
+1. Write the equation of the regression line that includes all of the variables.
+2. Interpret the slopes of `gestation` and `age` in this context.
+3. Calculate the residual for the first observation in the data set. (Hint: see the `predict` function)
+4. Interpret the `\(R^2\)` value for this larger model. 
+
+---
+class: primary
+# YT 4.2.2 (soln.)
+
+.small[
+`\(Y =\)` birthweight; `\(X_1=\)` gestation; `\(X_2=\)` parity; `\(X_3=\)` mother's age; `\(X_4=\)` mother's height; `\(X_5=\)` mother's weight; `\(X_6=\)` mother smokes.
+
+1. `\(Y = -80.41 + 0.44 \cdot X_1 - 3.33 \cdot X_2 - 0.009 \cdot X_3 + 1.15 \cdot X_4 + 0.050 \cdot X_5 - 8.401 \cdot X_6\)`
+2. When all else is held constant, for every additional day of gestation, the birthweight increases by 0.44 ounces. When all else is held constant, for every year older the mother is, the birthweight decreases by 0.009 ounces.
+3. 
+
+```r
+# get the first observation
+obs1 &lt;- openintro::babies[1,]
+# prediction
+y_hat &lt;- predict(babies_model, newdata = obs1)
+# Residual 
+obs1$bwt - y_hat
+```
+
+```
+##         1 
+## -2.003102
+```
+
+4. `\(R^2=0.258\)`. So, 25.8% of the variability in birthweight can be explained by the variability in the variables `\(X_1, \dots, X_6\)`. 
+]
+
+---
+class: inverse, center
+# Section 4.3: Logistic Regression
+
+---
+class: primary
+# Different responses
+
+In linear &amp; multiple regression, we have a *continuous* numerical response variable. However, this is not always the case. 
+
+Often, we want to determine whether the response belongs in one of two categories. 
+
+Examples: 
+
+- Is an email spam or not? 
+- Is a glass fragment from manufacturer 1 or 2? 
+- Will a juror say the defendant in a case is guilty or not guilty? 
+
+---
+class: primary
+# Logistic regression 
+
+Idea: 
+
+When the outcome is one of 2 options, you select the "success" outcome and model the response as binary. 
+
+- If `\(Y_i = 1\)` the response is a "success", if `\(Y_i = 0\)` it is a "failure" 
+- `\(p_i = Pr(Y_i = 1)\)` 
+- If there are more 1s than 0s, then `\(p_i\)` should be higher than 0.50
+- Can use other information `\(x_i\)` to influence the value of `\(p_i\)` in the model 
+
+---
+class: primary
+# Motivating Example
+
+Suppose we want to model what effects a juror's verdict:
+
+- `\(Y_i = 1\)` means "guilty" and `\(Y_i = 0\)` means "not guilty" 
+- Let `\(x_i\)` be a variable indicating whether or not the defendant's DNA was found at the crime scene. `\(x_i\)` is also binary: `\(x_i = 1\)` when the defendant's DNA was found at the crime scene, and `\(x_i=0\)` otherwise
+- We want to tie the probability a juror's verdict is guilty ( `\(p_i\)` ) to the presence of DNA evidence 
+- The probability should go up when there is DNA evidence, and should go down when there isn't DNA evidence. 
+
+---
+class: primary
+# Formulae 
+
+`$$Y_i \sim \text{Bernoulli}(p_i)$$`
+`$$\text{logit}(p_i) = \alpha + \beta \cdot x_i$$`
+
+`\(Y_i\)` is a random variable with `\(P(Y_i = 1) = p_i\)`, and the value of `\(p_i\)` changes with the with the value of other information `\(x_i\)`. `\(\alpha\)` is the intercept, `\(\beta\)` is the slope of the model (similar to simple linear regression). 
+
+---
+class: primary
+# Logit??? 
+
+The logit function takes a number from (0,1) (here, `\(p_i\)`) and turns it into a real number `\((-\infty, \infty)\)` (here `\(\alpha + \beta \cdot x_i\)`).
+
+The inverse of this function (to take a number from `\((-\infty, \infty)\)` and turn it into a number from (0,1)) is: 
+
+`$$p_i = \frac{\exp\{\alpha + \beta \cdot x_i \}}{1 + \exp\{\alpha + \beta \cdot x_i \}}$$`
+
+This is why we use it for logistic regression: we can turn any value and combination of predictor variables into a probability in this way. 
+
+---
+class: primary
+# Logit example 
+
+Email data: 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; spam &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; to_multiple &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; winner &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Is it spam? We think that this can be predicted by: whether or not it is sent to multiple people and/or it contains the word "winner"
+
+---
+class: primary
+# Logit example 
+
+
+```r
+glm(spam ~ to_multiple + winner, family = binomial, data = email)
+```
+
+```
+## 
+## Call:  glm(formula = spam ~ to_multiple + winner, family = binomial, 
+##     data = email)
+## 
+## Coefficients:
+## (Intercept)  to_multiple       winner  
+##      -2.160       -1.802        1.502  
+## 
+## Degrees of Freedom: 3920 Total (i.e. Null);  3918 Residual
+## Null Deviance:	    2437 
+## Residual Deviance: 2349 	AIC: 2355
+```
+
+
+---
+class: primary
+# Probability
+
+We can also talk about probability that the dependent variable will equal 1.
+
+`\(P(Y_i = 1) = p_i = \frac{\exp\{\alpha + \beta \cdot x_i \}}{1 + \exp\{\alpha + \beta \cdot x_i \}}\)`
+
+In the email example, what is the probability that the email is spam if `to_multiple` = 0 and `winner` = 1? 
+
+`\(p_i = \frac{\exp\{-2.160 + 1.502 \}}{1 + \exp\{-2.160 + 1.502\}} =\)` 0.341
+
+Can also be done with `predict.glm` with the `type = "response"` argument 
+
+---
+class: primary
+# Logit example
+
+&lt;table&gt;
+&lt;caption&gt;Predicted probabilities of spam given the to_multiple and winner variables&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; spam &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; to_multiple &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; winner &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; pred_prob &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2909 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.103 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.341 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 601 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.019 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.079 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 335 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.103 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.341 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.019 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+class: primary
+# Interpretation
+
+The interpretation of coefficients is NOT the same as it was for linear regression: 
+
+Linear regression: `\(Y = \beta_0 + \beta_1 \cdot x\)`. 
+- Interpretation of slope ( `\(\beta_1\)` ): 
+- for every one unit increase of `\(x\)`, `\(Y\)` increases by `\(\beta_1\)` units.
+
+--
+
+Logistic regression: `\(logit(p_i) = \alpha + \beta \cdot X_i\)`.
+- Interpretation of slope ( `\(\beta\)` ): 
+- "For every one unit increase of `\(X_i\)`, `\(logit(p_i)\)` increases by `\(\beta\)`"
+- Meaningless! 
+
+---
+class: primary
+# Interpretation
+
+Instead, use the inverse logit function to convert everything to probabilities: 
+
+Let `\(X_i = x_i\)`:
+
+`$$p_1 = \frac{\exp\{\alpha + \beta \cdot x_i \}}{1 + \exp\{\alpha + \beta \cdot x_i \}}$$`
+Let `\(X_i = x_i + 1\)`: 
+`$$p_2 = \frac{\exp\{\alpha + \beta \cdot (x_i+1) \}}{1 + \exp\{\alpha + \beta \cdot (x_i+1) \}}$$`
+
+What's the difference between `\(p_1\)` and `\(p_2\)`??? 
+
+---
+class: primary
+# Odds ratio
+
+An **odds ratio** as a ratio of odds. **Odds** are ratios of probabilities of 2 events. 
+
+.small[
+Example: Odds in horse racing
+
+- Suppose you want to place a bet on a horse name Cleopatra winning the race. Odds for Cleopatra are reported as 4:1.
+- Let `\(Y\)` be the event that Cleopatra wins the race
+- Let `\(Y^c\)` be the event that any horse in the race other than Cleopatra wins the race.
+- The odds ratio is written as `\(O(Y) = \frac{P(Y^c)}{P(Y)}\)`
+- We know that `\(P(Y)+P(Y^c)=1\)`.  
+- With this information, we can determine `\(P(Y)\)`, the probability that Cleopatra wins the race: 
+`$$O(Y) = \frac{P(Y^c)}{P(Y)} = \frac{1-P(Y)}{P(Y)}$$`
+`$$\frac{1 - P(Y)}{P(Y)} = 4 \Rightarrow \frac{1}{P(Y)} - 1 = 4 \Rightarrow P(Y) = \frac{1}{5}$$`
+]
+
+---
+class: primary
+# Interpretation
+
+To interpret the parameters from logistic regression, we talk about the odds ratio: for every 1 unit increase in x, the odds that `\(Y=1\)` increase by `\(e^\beta\)`
+
+Email example: when `winner` goes from 0 (email doesn't contain the word "winner") to 1 (email does contain the word "winner"), the odds that the email is spam increase by `\(e^{1.502} \approx 4.5\)`.
+
+(Do the math live!)
+
+So when the email contains the word winner, it is 4.5 times more likely to be spam, with everything else held constant. 
+
+---
+class: primary
+# Your Turn 4.3.1
+
+1. The package `openintro` contains a dataset called `possum`. Load this data in `R`.
+2. Read the help file (`?possum`) to learn about the variables. 
+3. We want to know whether or not a possum came from Victoria, Australia, as opposed to other regions in Australia. Fit a logistic regression to the data, using `pop` as the dependent variable. Use `sex`, `totalL`, `tailL`, and `skullW` as explanatory variables. Print a summary of the model. 
+
+```r
+# here is some code to get you started 
+data("possum")
+# make a new population variable the is 0-1 like the logistic regression needs. 
+possum$pop2 &lt;- as.numeric(possum$pop == "Vic")
+# model: fill in the blanks 
+possum_model &lt;- glm(___ ~ ___, data = possum, family = "binomial")
+```
+
+---
+class: primary
+# YT 4.3.1 (soln.)
+
+
+```r
+data("possum")
+possum$pop2 &lt;- as.numeric(possum$pop == "Vic")
+possum_model &lt;- glm(pop2 ~ sex + totalL + tailL + skullW, data = possum, family = "binomial")
+summary(possum_model)$coef
+```
+
+```
+##               Estimate Std. Error   z value     Pr(&gt;|z|)
+## (Intercept) 33.5094680  9.9052867  3.382988 7.170172e-04
+## sexm        -1.4206720  0.6456899 -2.200239 2.778996e-02
+## totalL       0.5687256  0.1322073  4.301773 1.694370e-05
+## tailL       -1.8056547  0.3599454 -5.016469 5.262978e-07
+## skullW      -0.2787295  0.1226499 -2.272563 2.305253e-02
+```
+
+
+---
+class: primary
+# Your Turn 4.3.2
+
+Using the `possum_model` from the previous question: 
+
+1. Write out the form of the model. Also identify the variables that are positively associated with a possum from Victoria.
+2. Suppose we see a brushtail possum at a zoo in the US, and a sign says the possum had been captured in the wild in Australia, but it doesn’t say which part of Australia. However, the sign does indicate that the possum is male, its skull is about 63 mm wide, its tail is 37 cm long, and its total length is 83 cm. What is the reduced model’s computed probability that this possum is from Victoria? Hint: see the `type` argument of the `predict.glm` function.
+
+---
+class: primary
+# YT 4.3.2 (soln.)
+
+.small[
+Let `\(Y\)` be the location of the possum. `\(Y = 1\)` when the possum is from Victoria, and `\(Y=0\)` otherwise. `\(X_1\)` is the possum's sex, `\(X_2\)` is the possum's length (cm), `\(X_3\)` is the length of the possum's tail (cm), and `\(X_4\)` is the width of the possum's skull (mm). 
+ 
+1. `\(Y \sim Bern(p)\)`; `\(logit(p) = 33.51 - 1.42\cdot X_1 + 0.57 \cdot X_2 - 1.81 \cdot X_3 - 0.28\cdot X_4\)`. The only variable positively associated with possums from Victoria is the total length. 
+2. To predict, we want to create a new dataframe with 1 row containing this possum's measurements, then use the `predict` function and the `possum_model` object. ]
+
+```r
+newpossum &lt;- data.frame(sex = "m", skullW = 63, totalL = 83, tailL=37)
+predict(possum_model, newdata = newpossum, type = "response")
+```
+
+```
+##           1 
+## 0.006205055
+```
+So, it is very unlikely this possum came from Victoria.
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
