@@ -92,4 +92,17 @@
 .red {
   color: red;
 }
+.purple {
+  color: #B20095;
+}  
+.green {
+  color: #008B40;
+}
+.blue {
+  color: #005189;
+}
   
+remark.macros.scale = function (percentage) {
+  var url = this;
+  return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};  
