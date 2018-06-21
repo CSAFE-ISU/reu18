@@ -5,7 +5,7 @@ date: "2018-06-13 17:00:00 CDT"
 topic: "week2"
 layout: post
 root: ../../../
-tags: [forensics, statistics, assignments]
+tags: [forensics, statistics, assignments, week2]
 ---
 
 During the CSAFE All Hands Meeting, the opportunity to listen to many researchers discuss their current research projects was presented. The projects ranged from statistical foundations to several kinds of forensic evidence, such as firearms and tool marks, bloodstain pattern analysis, and fingerprint analysis. Two of these projects will be discussed based on their posters and presentations.
