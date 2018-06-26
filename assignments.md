@@ -12,6 +12,7 @@ Date Assigned | What | Date Due | Solution (if applicable)
 6/14/18    | Ch. 2 problems 8a, 8c-f, 14, 16, 18, 22, 26, 34, 38. Do all parts unless otherwise stated. Use a .Rmd to write the homework. | 6/18/2018 @ 4:00pm | [Solution](static/homework/soln-assn-2.html)
 6/19/18 | Ch. 3 problems 4, 6, 8, 16, 26, 28, 32, 44. Do all parts. Turn in a .pdf file that you compiled from a .Rmd | 6/22/18 @ 9:00am | [Solution](static/homework/soln-assn-3.html)
 6/22/18 | Complete the assignment [here](static/homework/assn-4.html). Follow all directions carefully. | 6/27/18 @ 9:00am 
+6/26/18 | Complete the assignment [here](static/homework/assn-5.html). Follow all directions carefully. | 7/3/18 @ 5:00pm
 
 
 
