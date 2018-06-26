@@ -28,3 +28,4 @@ New slide sets will be made available as they are created.
 - Introduction to Probability: [here](static/slides/statistics/probability.html)
 - Distributions of Random Variables: [here](static/slides/statistics/dists-rand-vars.html)
 - Regression (with help from `R`): [here](static/slides/statistics/regressions.html)
+- Classification (with help from `R`): [here](static/slides/statistics/classification.html)
